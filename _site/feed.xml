@@ -5,12 +5,12 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jan 2025 13:55:07 -0500</pubDate>
-    <lastBuildDate>Tue, 21 Jan 2025 13:55:07 -0500</lastBuildDate>
+    <pubDate>Tue, 21 Jan 2025 14:04:05 -0500</pubDate>
+    <lastBuildDate>Tue, 21 Jan 2025 14:04:05 -0500</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
-        <title>Useful Slurm commands</title>
+        <title>Slurm commands and templates</title>
         <description>&lt;h2 id=&quot;slurm-job-status&quot;&gt;Slurm Job Status&lt;/h2&gt;
 &lt;h3 id=&quot;checking-my-job-status&quot;&gt;Checking my job status&lt;/h3&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;squeue &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;user name&amp;gt;
@@ -51,13 +51,15 @@ deepspeed your_code.py
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Tue, 21 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025/01/21/Useful-Slurm-commands/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025/01/21/Useful-Slurm-commands/</guid>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates/</guid>
         
         <category>HPC</category>
         
         <category>Slurm</category>
         
+        
+        <category>Large Language Models (LLMs)</category>
         
       </item>
     

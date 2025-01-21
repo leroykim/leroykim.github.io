@@ -60,6 +60,9 @@ body {
 
 .site-intro {
     text-align: justify;
+    @include media-query($on-palm) {
+        text-align: justify; /* Ensure justify alignment on mobile */
+    }
 }
 
 .home {
