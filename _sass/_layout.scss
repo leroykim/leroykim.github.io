@@ -141,7 +141,19 @@
  * Posts
  */
 .post-header {
+    // margin: 0;
     margin-bottom: $spacing-unit;
+    padding: 0;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $text-color;
+    background-color: $background-color;
+
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Horizontally center */
+    // align-items: center; /* Vertically center */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
 }
 
 .post-title {
