@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>My GitHub Page</title>
-</head>
-
-<body>
-    <h1>Welcome to My Portfolio</h1>
-    <p>This is hosted on GitHub Pages.</p>
-</body>
-
-</html>
+---
+layout: default
+---
+<div class="home">
+	<section class="site-header">
+		<h1 class="smallcap"><a class="site-title" href="{{ '/' | prepend: site.baseurl | prepend: site.url }}">{{ site.title }}</a></h1>
+		{% include nav.html %}
+		{% include intro.html %}
+	</section>
+	<section>
+		<ul class="post-list">
+			{% for post in site.posts %}
+			<li>
+				<a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a> <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+</div>
