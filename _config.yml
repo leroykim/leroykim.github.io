@@ -1,9 +1,9 @@
 # Site settings
-title: "TextLog"
-description: "Minimalist Jekyll theme for documentation site"
+title: "Dae-young Kim (Leroy)"
+description: "AI Research Scientist | Expertise in LLMs & Knowledge Graphs"
 # baseurl: "/textlog" # required if used under gh-pages branch, else (under master branch) just leave empty/blank
 url: ""
-author: "John Doe"
+author: "Kim, Dae Young"
 
 # Build settings
 kramdown:
