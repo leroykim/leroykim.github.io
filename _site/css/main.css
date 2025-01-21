@@ -412,34 +412,36 @@ hr {
   font-size: 1rem;
 }
 
-/* Style for Markdown code blocks */
+/* Code block styling */
 pre {
-  overflow-x: auto; /* Allow horizontal scrolling for long lines of code */
-  padding: 1rem; /* Add padding for readability */
+  overflow-x: auto; /* Allow horizontal scrolling for long code */
+  padding: 1rem; /* Add padding for better readability */
   background-color: #f7f7f7; /* Light background for contrast */
   border: 1px solid #eaeaea; /* Add a subtle border */
   border-radius: 4px; /* Optional: Rounded corners */
-  font-size: 0.875rem; /* Adjust font size for better readability */
-  white-space: pre; /* Preserve whitespace and line breaks */
+  font-size: 0.875rem; /* Use smaller font size for code blocks */
+  white-space: pre-wrap; /* Wrap lines if necessary */
+  word-wrap: break-word; /* Break long words to avoid horizontal scrolling */
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 code {
-  font-family: Inconsolata, Monaco, Consolas, monospace; /* Use monospace font */
-  font-size: 0.875rem; /* Adjust font size */
+  font-family: Inconsolata, Monaco, Consolas, monospace; /* Use a monospace font */
+  font-size: 0.875rem; /* Ensure inline code is also readable */
   background-color: #fcfcfc; /* Light background for inline code */
   padding: 0.2rem 0.4rem; /* Add padding for inline code */
   border-radius: 4px; /* Optional: Rounded corners */
-  word-wrap: break-word; /* Ensure inline code breaks properly */
+  word-wrap: break-word; /* Ensure inline code wraps properly */
 }
 
 /* Media query for smaller screens */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 375px) { /* iPhone 13 Mini viewport width */
   pre {
-    font-size: 0.7954545455rem; /* Slightly smaller font size on mobile */
-    padding: 0.75rem; /* Reduce padding for smaller screens */
+    font-size: 0.7954545455rem; /* Slightly reduce font size */
+    padding: 0.75rem; /* Reduce padding to save space */
   }
   code {
-    font-size: 0.7954545455rem; /* Smaller inline code font */
+    font-size: 0.7954545455rem; /* Adjust inline code font size */
   }
 }
 /**
