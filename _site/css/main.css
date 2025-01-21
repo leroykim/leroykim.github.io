@@ -412,6 +412,36 @@ hr {
   font-size: 1rem;
 }
 
+/* Style for Markdown code blocks */
+pre {
+  overflow-x: auto; /* Allow horizontal scrolling for long lines of code */
+  padding: 1rem; /* Add padding for readability */
+  background-color: #f7f7f7; /* Light background for contrast */
+  border: 1px solid #eaeaea; /* Add a subtle border */
+  border-radius: 4px; /* Optional: Rounded corners */
+  font-size: 0.875rem; /* Adjust font size for better readability */
+  white-space: pre; /* Preserve whitespace and line breaks */
+}
+
+code {
+  font-family: Inconsolata, Monaco, Consolas, monospace; /* Use monospace font */
+  font-size: 0.875rem; /* Adjust font size */
+  background-color: #fcfcfc; /* Light background for inline code */
+  padding: 0.2rem 0.4rem; /* Add padding for inline code */
+  border-radius: 4px; /* Optional: Rounded corners */
+  word-wrap: break-word; /* Ensure inline code breaks properly */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+  pre {
+    font-size: 0.7954545455rem; /* Slightly smaller font size on mobile */
+    padding: 0.75rem; /* Reduce padding for smaller screens */
+  }
+  code {
+    font-size: 0.7954545455rem; /* Smaller inline code font */
+  }
+}
 /**
  * Copyright section
  */
