@@ -5,9 +5,61 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jan 2025 13:15:33 -0500</pubDate>
-    <lastBuildDate>Tue, 21 Jan 2025 13:15:33 -0500</lastBuildDate>
+    <pubDate>Tue, 21 Jan 2025 13:47:32 -0500</pubDate>
+    <lastBuildDate>Tue, 21 Jan 2025 13:47:32 -0500</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Useful Slurm commands</title>
+        <description>&lt;h2 id=&quot;slurm-job-status&quot;&gt;Slurm Job Status&lt;/h2&gt;
+&lt;h3 id=&quot;checking-my-job-status&quot;&gt;Checking my job status&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;squeue &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;user name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;canceling-a-job&quot;&gt;Canceling a job&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scancel &amp;lt;job &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;graphic-card-usage-check&quot;&gt;Graphic Card Usage Check&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;srun &lt;span class=&quot;nt&quot;&gt;--jobid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;job_id&amp;gt; nvidia-smi
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;sbatch-template&quot;&gt;Sbatch template&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-shell-script&quot;&gt;#!/bin/bash
+#SBATCH --job-name &amp;lt;job name&amp;gt;                       # Job name
+#SBATCH --ntasks 2                                  # Number of tasks
+#SBATCH --time 3-00                                 # Runtime
+#SBATCH --mem-per-gpu=30G                           # Reserve 30 GB memory per GPU
+#SBATCH --partition gpu                             # Partition to submit
+#SBATCH --output job-log-%j.txt                     # Standard out will be written to this file
+#SBATCH --error job-log-%j.txt                      # Standard err will be written to this file
+#SBATCH --mail-user &amp;lt;email&amp;gt;                         # This is the email you wish to be notified at
+#SBATCH --mail-type ALL                             # Alert types to get via email
+#SBATCH --nodelist=&amp;lt;nodelist&amp;gt;                       # Node list to submit the job
+#SBATCH --gres=gpu:2                                # Number of gpu to reserve
+#SBATCH --requeue                                   # Requeue when the job is cancelled
+
+spack load &amp;lt;dependency name&amp;gt;
+module load &amp;lt;dependency name&amp;gt;
+
+# ACTIVATE ANACONDA IF NEEDED
+eval &quot;$(conda shell.bash hook)&quot;
+conda activate &amp;lt;conda environment name&amp;gt;
+
+# RUN TRAINING
+deepspeed your_code.py
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Tue, 21 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025/01/21/Useful-Slurm-commands/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025/01/21/Useful-Slurm-commands/</guid>
+        
+        <category>HPC</category>
+        
+        <category>Slurm</category>
+        
+        
+      </item>
     
       <item>
         <title>What&apos;s Jekyll?</title>
