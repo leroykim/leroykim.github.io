@@ -151,6 +151,17 @@
     max-width: $max-width; /* Limit the width for readability */
 }
 
+/* Media query for smaller devices */
+@media screen and (max-width: $on-palm) {
+    .post-page {
+        padding: 0.5rem; /* Reduce padding for smaller screens */
+    }
+
+    .post {
+        max-width: 100%; /* Allow full width on small screens */
+    }
+}
+
 .post-header {
     margin-bottom: $spacing-unit;
 }

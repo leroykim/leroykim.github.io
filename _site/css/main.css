@@ -348,6 +348,15 @@ hr {
   max-width: 48rem; /* Limit the width for readability */
 }
 
+/* Media query for smaller devices */
+@media screen and (max-width: 600px) {
+  .post-page {
+    padding: 0.5rem; /* Reduce padding for smaller screens */
+  }
+  .post {
+    max-width: 100%; /* Allow full width on small screens */
+  }
+}
 .post-header {
   margin-bottom: 2rem;
 }
