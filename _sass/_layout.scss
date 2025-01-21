@@ -1,3 +1,8 @@
+@use "sass:math";
+
+/**
+ * Underlined styling
+ */
 .underlined {
     flex: 1;
     text-decoration: none;
@@ -5,28 +10,34 @@
     background-position: 0 1.2em;
     background-size: 0 100%;
     background-repeat: no-repeat;
-    transition: background .5s;
-    &:hover, {
+    transition: background 0.5s;
+
+    &:hover {
         background-size: 100% 100%;
     }
+
     &--thin {
         background-image: linear-gradient(to right, black 0, black 100%);
     }
+
     &--thick {
         background-position: 0 -0.1em;
     }
+
     &--offset {
         background-position: 0 0.2em;
-        //didn't find another solution than mask the underline shape by a box shadow with the same color than the bg
-        box-shadow: inset 0 -.5em 0 0 white;
+        // Mask the underline shape with a box shadow of the same color as the background
+        box-shadow: inset 0 -0.5em 0 0 white;
     }
+
     &--gradient {
         background-position: 0 -0.1em;
         background-image: linear-gradient(to right, yellow 0, lightgreen 100%);
     }
+
     &--reverse {
         background-position: 100% -0.1em;
-        transition: background 1s; //yep, that's a long link
+        transition: background 1s; // Long link transition
         background-image: linear-gradient(to right, yellow 0, yellow 100%);
     }
 }
@@ -38,17 +49,20 @@
     border-bottom: 1px solid $grey-color-light;
     margin-top: -2rem;
     max-width: $max-width;
+
     p {
-      font-size: $small-font-size;
+        font-size: $small-font-size;
     }
+
     .site-intro {
         font-size: $big-font-size;
     }
 }
 
+/**
+ * Small caps styling
+ */
 .smallcap {
-    //text-transform: lowercase;
-    //font-variant: small-caps;
     font-size: 1.5rem;
     font-weight: bold;
 
@@ -58,22 +72,21 @@
         letter-spacing: 2px;
         background-color: #333;
         color: #eee;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        padding-top: 0.2rem;
-        padding-bottom: 0.2rem;
+        padding: 0.2rem 0.5rem;
     }
 }
+
 /**
  * Page content
  */
 .page-content {
     position: relative;
-    padding: $spacing-unit ($spacing-unit * 0.75);
+    padding: $spacing-unit math.div($spacing-unit, 1.33);
     margin: 1rem;
     box-sizing: border-box;
     max-width: $max-width;
 }
+
 /**
  * Pages
  */
@@ -84,8 +97,11 @@
     }
 }
 
+/**
+ * Post list
+ */
 .post-list > li {
-    margin-bottom: $spacing-unit / 4;
+    margin-bottom: math.div($spacing-unit, 4);
     list-style-type: none;
     margin-left: -2rem;
 
@@ -105,6 +121,7 @@
         color: $grey-color;
         display: inline-block;
     }
+
     @include media-query($on-palm) {
         time {
             display: block;
@@ -113,9 +130,13 @@
     }
 }
 
+/**
+ * Tag titles
+ */
 .tag-title {
     color: $link-color;
 }
+
 /**
  * Posts
  */
@@ -135,11 +156,15 @@
     font-size: $small-font-size;
     font-family: $code-font-family;
     color: $grey-color;
-    a, a:visited {
-      color: $grey-color-dark;
+
+    a,
+    a:visited {
+        color: $grey-color-dark;
     }
+
     .tags {
-        a, a:visited {
+        a,
+        a:visited {
             background: $grey-color-light;
             padding: 0.1rem 0.5rem;
         }
@@ -179,14 +204,20 @@
     }
 }
 
+/**
+ * Copyright section
+ */
 .copyright {
-  margin-top: $spacing-unit;
-  font-size: $small-font-size;
-  font-family: $code-font-family;
-  p {
-    color: $grey-color;
-    a, a:visited {
-      color: $grey-color-dark;
+    margin-top: $spacing-unit;
+    font-size: $small-font-size;
+    font-family: $code-font-family;
+
+    p {
+        color: $grey-color;
+
+        a,
+        a:visited {
+            color: $grey-color-dark;
+        }
     }
-  }
 }
