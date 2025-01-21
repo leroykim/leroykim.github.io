@@ -140,20 +140,19 @@
 /**
  * Posts
  */
-.post-header {
-    // margin: 0;
-    margin-bottom: $spacing-unit;
-    padding: 0;
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    color: $text-color;
-    background-color: $background-color;
+ .post-page {
+    display: flex; /* Use Flexbox for layout */
+    justify-content: center; /* Center horizontally */
+    padding: 1rem; /* Optional: Add some padding around the post content */
+}
 
-    display: flex; /* Use Flexbox for centering */
-    justify-content: center; /* Horizontally center */
-    // align-items: center; /* Vertically center */
-    min-height: 100vh; /* Ensure it covers the full viewport height */
+.post {
+    width: 100%; /* Make the content responsive */
+    max-width: $max-width; /* Limit the width for readability */
+}
+
+.post-header {
+    margin-bottom: $spacing-unit;
 }
 
 .post-title {
