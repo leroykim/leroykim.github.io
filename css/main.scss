@@ -58,6 +58,10 @@ body {
     min-height: 100vh; /* Ensure it covers the full viewport height */
 }
 
+.site-intro {
+    text-align: justify;
+}
+
 .home {
     width: 90%;
     max-width: $max-width;
