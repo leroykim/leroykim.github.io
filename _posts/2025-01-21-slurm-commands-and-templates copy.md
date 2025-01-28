@@ -22,6 +22,7 @@ scancel <job id>
 ```bash
 srun --jobid=<job_id> nvidia-smi
 ```
+> YOU MUST CREATE SLURM LOG DIRECTORY IF YOU DESIGNATE SPECIFIC ONE!
 
 ## Sbatch template
 ```shell-script
