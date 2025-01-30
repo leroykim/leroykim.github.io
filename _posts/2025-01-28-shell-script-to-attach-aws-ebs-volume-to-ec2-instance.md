@@ -7,6 +7,9 @@ author: Dae-young Kim
 comment: true
 ---
 
+> Availability Zone of the EBS volume and the EC2 instance must be the same.
+> Attach the EBS volume to the EC2 instance and run the script.
+
 ```bash
 #!/bin/bash
 # Run `chmod +x mount_ebs.sh` to make it executable.
