@@ -23,7 +23,7 @@ Unlink existing symbolic link.
 $ unlink /usr/local/bin/python
 ```
 
-Create symbolic link again with desired python version.
+Create symbolic link again with the desired python version.
 ```bash
 $ sudo ln -s /opt/homebrew/opt/python@3.11/libexec/bin/python3 /usr/local/bin/python
 ```
