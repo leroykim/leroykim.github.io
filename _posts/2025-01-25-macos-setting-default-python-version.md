@@ -28,7 +28,7 @@ Create symbolic link again with the desired python version.
 $ sudo ln -s /opt/homebrew/opt/python@3.11/libexec/bin/python3 /usr/local/bin/python
 ```
 
-Close and open the `Terminal` app and check if it works.
+Close and reopen the `Terminal` app and check if it works.
 ```bash
 $ python --version
 Python 3.11.11
