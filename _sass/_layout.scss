@@ -264,34 +264,28 @@ code {
 /**
  * Copyright section
  * ------------------
- * Centers its content using inline-block to avoid minor alignment offsets.
- *
- * Notes
- * -----
- * This approach forces the <p> element to shrink-to-fit its content and
- * ensures that the centering is exact.
+ * This section aligns its left edge with the post content.
+ * It removes the auto horizontal margins and centers the text to the left.
  *
  * Parameters
  * ----------
- * $max-width : Maximum width for the container.
- * $spacing-unit : Vertical spacing unit.
+ * $max-width : Maximum width for the content.
+ * $spacing-unit : Spacing unit used for vertical spacing.
  * $small-font-size : Font size for small text.
  * $code-font-family : Monospace font family.
  * $grey-color : Base grey color.
  * $grey-color-dark : Darker grey used for links.
  */
  .copyright {
-    max-width: $max-width;
-    margin: $spacing-unit auto 0; // Auto left/right margins center the block.
-    text-align: center;
+    max-width: $max-width; // Limit width to align with post content.
+    margin: $spacing-unit 0 0; // Top margin only; left/right set to 0 to align with parent's left edge.
+    text-align: left; // Align text to the left.
     font-size: $small-font-size;
     font-family: $code-font-family;
 
     p {
-        display: inline-block; // Shrink-to-fit the paragraph content.
-        margin: 0; // Remove default margins.
-        padding: 0; // Remove any potential padding.
-        text-align: center; // Ensure inner text is centered.
+        margin: 0; // Remove default paragraph margins.
+        color: $grey-color;
 
         a,
         a:visited {
