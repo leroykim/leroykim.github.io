@@ -264,21 +264,21 @@ code {
 /**
  * Copyright section
  * ------------------
- * This section aligns its left edge with the post content.
- * It removes the auto horizontal margins and centers the text to the left.
+ * This section aligns its left edge with the post content by using a
+ * negative left margin to match the offset of the post list items.
  *
  * Parameters
  * ----------
  * $max-width : Maximum width for the content.
  * $spacing-unit : Spacing unit used for vertical spacing.
  * $small-font-size : Font size for small text.
- * $code-font-family : Monospace font family.
+ * $code-font-family : Monospace font family for code elements.
  * $grey-color : Base grey color.
  * $grey-color-dark : Darker grey used for links.
  */
  .copyright {
     max-width: $max-width; // Limit width to align with post content.
-    margin: $spacing-unit 0 0; // Top margin only; left/right set to 0 to align with parent's left edge.
+    margin: $spacing-unit 0 0 -2rem; // Top margin; right and bottom margins 0; left margin -2rem to match post list offset.
     text-align: left; // Align text to the left.
     font-size: $small-font-size;
     font-family: $code-font-family;
