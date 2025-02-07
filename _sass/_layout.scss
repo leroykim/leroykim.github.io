@@ -263,33 +263,28 @@ code {
 
 /**
  * Copyright section
+ * ------------------
+ * This section centers its content similarly to the post layout by limiting
+ * its width to `$max-width` and using auto margins.
+ *
+ * Parameters
+ * ----------
+ * $max-width : Maximum width for the content.
+ * $spacing-unit : Spacing unit used for vertical spacing.
+ * $small-font-size : Font size used for smaller text.
+ * $code-font-family : Monospace font family for code.
+ * $grey-color : Base grey color.
+ * $grey-color-dark : Darker grey for links.
  */
-// .copyright {
-//     margin-top: $spacing-unit;
-//     font-size: $small-font-size;
-//     font-family: $code-font-family;
-
-//     p {
-//         color: $grey-color;
-
-//         a,
-//         a:visited {
-//             color: $grey-color-dark;
-//         }
-//     }
-// }
-.copyright {
-    display: flex; // Use Flexbox for layout
-    justify-content: center; // Center content horizontally
-    align-items: center; // Optionally center content vertically
-    text-align: center; // Ensure text inside is centered
-    width: 100%;
-    max-width: $max-width; // Limit width for consistency
-    margin: $spacing-unit auto 0 auto; // Top margin with horizontal centering
+ .copyright {
+    max-width: $max-width; // Limit the width to align with post layout
+    margin: $spacing-unit auto 0; // Top margin with auto left/right centering
+    text-align: center; // Center the text inside the block
     font-size: $small-font-size;
     font-family: $code-font-family;
 
     p {
+        margin: 0; // Remove default paragraph margins
         color: $grey-color;
 
         a,
