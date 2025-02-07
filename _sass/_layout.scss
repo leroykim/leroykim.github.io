@@ -264,8 +264,28 @@ code {
 /**
  * Copyright section
  */
+// .copyright {
+//     margin-top: $spacing-unit;
+//     font-size: $small-font-size;
+//     font-family: $code-font-family;
+
+//     p {
+//         color: $grey-color;
+
+//         a,
+//         a:visited {
+//             color: $grey-color-dark;
+//         }
+//     }
+// }
 .copyright {
-    margin-top: $spacing-unit;
+    display: flex; // Use Flexbox for layout
+    justify-content: center; // Center content horizontally
+    align-items: center; // Optionally center content vertically
+    text-align: center; // Ensure text inside is centered
+    width: 100%;
+    max-width: $max-width; // Limit width for consistency
+    margin: $spacing-unit auto 0 auto; // Top margin with horizontal centering
     font-size: $small-font-size;
     font-family: $code-font-family;
 
