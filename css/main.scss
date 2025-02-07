@@ -71,6 +71,12 @@ body {
     // text-align: center;
 }
 
+.copyright {
+    width: 90%;
+    max-width: $max-width;
+    // text-align: center;
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",
