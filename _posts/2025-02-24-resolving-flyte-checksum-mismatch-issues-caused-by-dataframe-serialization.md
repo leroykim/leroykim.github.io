@@ -90,7 +90,6 @@ def create_and_save_df(output_file: str) -> FlyteFile:
     data = {'col1': [1, 2, 3], 'col2': ['a', 'b', 'c']}
     df = pd.DataFrame(data)
     path = Path(output_file)
-    # Write DataFrame to CSV using a static file name.
     df.to_csv(path, index=False)
     return FlyteFile(str(path))
 
@@ -122,7 +121,6 @@ def file_workflow() -> int:
     int
         The row count from the CSV file.
     """
-    # Use a static file name (without a timestamp)
     file = create_and_save_df(output_file="sample.csv")
     return consume_file(file)
 ```
