@@ -196,7 +196,7 @@ To execute the workflow on the Flyte sandbox cluster, use the pyflyte run comman
 ### Execute the workflow in Flyte Sandbox
 
 ```bash
-pyflyte run --remote --image ./workflow_codes/imageSpec.yaml -p flyteproject -d development ./workflow_codes/workflow.py greeting_workflow
+pyflyte run --remote --image ./workflow_codes/imageSpec.yaml -p flyteproject -d development ./workflow_codes/codes/workflow.py greeting_workflow
 ```
 
 ### Explanation of Command Arguments
