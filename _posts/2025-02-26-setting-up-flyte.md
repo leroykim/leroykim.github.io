@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting Up Flyte: A Step-by-Step Guide
+title: Setting Up Flyte (A Step-by-Step Guide)
 categories: [Flyte, Workflow Orchestration]
 tags: [Flyte, Python, Ubuntu]
 author: Dae-young Kim
