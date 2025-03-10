@@ -3,11 +3,12 @@ layout: page
 title: About
 ---
 
-# Dae Young Kim
-<!-- 
-[📧 daeyoungkim.ai@gmail.com](mailto:daeyoungkim.ai@gmail.com) • [🏠 daeyoungkim.com](http://daeyoungkim.com) • [🐙 GitHub](https://github.com/leroykim) • [🎓 Google Scholar](https://scholar.google.com/citations?user=ip-7PZEAAAAJ)
+<!-- # Dae Young Kim -->
 
---- -->
+- [📧 daeyoungkim.ai@gmail.com](mailto:daeyoungkim.ai@gmail.com)
+- [🏠 daeyoungkim.com](http://daeyoungkim.com)
+- [🐙 GitHub](https://github.com/leroykim)
+- [🎓 Google Scholar](https://scholar.google.com/citations?user=ip-7PZEAAAAJ)
 
 ## Career Objective
 
