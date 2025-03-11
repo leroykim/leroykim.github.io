@@ -6,7 +6,7 @@ tags: [Flyte, Python]
 author: Dae-young Kim
 comment: true
 ---
-Flyte makes it easy to handle large datasets by treating directories as structured outputs using FlyteDirectory. This allows seamless management of files without manually handling storage paths.
+Flyte makes it easy to handle large datasets by treating directories as structured outputs using `FlyteDirectory`. This allows seamless management of files without manually handling storage paths.
 
 In this post, we’ll demonstrate the simplest way to create a FlyteDirectory and retrieve its URL.
 
