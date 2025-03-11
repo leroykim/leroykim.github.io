@@ -5,8 +5,8 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Mar 2025 07:57:43 -0400</pubDate>
-    <lastBuildDate>Tue, 11 Mar 2025 07:57:43 -0400</lastBuildDate>
+    <pubDate>Tue, 11 Mar 2025 09:19:51 -0400</pubDate>
+    <lastBuildDate>Tue, 11 Mar 2025 09:19:51 -0400</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -16,6 +16,8 @@
 
 &lt;h4 id=&quot;probability-density-function-pdf&quot;&gt;Probability Density Function (PDF)&lt;/h4&gt;
 &lt;p&gt;\(\int_{-\infty}^{\infty}f_{x}(x)dx = 1\)&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h4 id=&quot;cumulative-distribution-function-cdf&quot;&gt;Cumulative Distribution Function (CDF)&lt;/h4&gt;
 &lt;p&gt;\(F_{X}(x) = p(X \leq x)\)&lt;/p&gt;
@@ -36,18 +38,26 @@
   &lt;li&gt;\(\lim\limits_{x \to \infty} F_X(x) = 1\).&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Discrete variables’ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CDF&lt;/code&gt;: \(F_{X}(x)=\sum_{k \leq x}p(k)\)&lt;/p&gt;
+&lt;h5 id=&quot;discrete-variables&quot;&gt;Discrete variables’&lt;/h5&gt;
+&lt;p&gt;\(F_{X}(x)=\sum_{k \leq x}p(k)\)&lt;/p&gt;
 
-&lt;p&gt;Continuous variables’ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CDF&lt;/code&gt;: \(F_{X}(x)=\int_{-\infty}^{x}p(y)dy\)&lt;/p&gt;
+&lt;h5 id=&quot;continuous-variables&quot;&gt;Continuous variables’&lt;/h5&gt;
+&lt;p&gt;\(F_{X}(x)=\int_{-\infty}^{x}p(y)dy\)&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h4 id=&quot;joint-probability-distribution&quot;&gt;Joint Probability Distribution&lt;/h4&gt;
 &lt;p&gt;A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joint probability distribution&lt;/code&gt; describes the probability of two (or more) random variables occurring together.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/joint_pd_plot.svg&quot; alt=&quot;Joint Probability Distribution Plot&quot; /&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;discrete-varibales&quot;&gt;Discrete Varibales&lt;/h5&gt;
 &lt;p&gt;\(P(X=x, Y=y)\)&lt;/p&gt;
 
 &lt;h5 id=&quot;continuous-varibales&quot;&gt;Continuous Varibales&lt;/h5&gt;
-&lt;p&gt;\(f_{X,Y}(x,y) = \frac{\sigma^2}{\sigma x \sigma y}P(X \leq x, Y \leq y)\)&lt;/p&gt;
+&lt;p&gt;\(f_{X,Y}(x,y) = \frac{\sigma^2}{\sigma x \sigma y}P(X \leq x, Y \leq y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}P(X \leq x, Y \leq y)dxdy\)&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h4 id=&quot;marginal-probability-distribution&quot;&gt;Marginal Probability Distribution&lt;/h4&gt;
 &lt;p&gt;A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;marginal probability distribution&lt;/code&gt; gives the probability of one variable &lt;strong&gt;regardless of the other&lt;/strong&gt;. This &lt;strong&gt;marginalizes out&lt;/strong&gt; \(Y\) by summing (discrete) or integrating (continuous) over all possible values of \(Y\).&lt;/p&gt;
@@ -57,6 +67,36 @@
 
 &lt;h5 id=&quot;continuous-varibales-1&quot;&gt;Continuous Varibales&lt;/h5&gt;
 &lt;p&gt;\(f_{X}(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)dy\)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;deriving-a-marginal-probability-density-function-pdf-from-a-joint-pdf&quot;&gt;Deriving a Marginal Probability Density Function (PDF) from a Joint PDF&lt;/h4&gt;
+&lt;p&gt;The marginal probability density function is obtained by &lt;strong&gt;integrating out&lt;/strong&gt; the unwanted variable from the joint probability density function.&lt;/p&gt;
+
+&lt;p&gt;The marginal PDF of \(X\), which is \(F_{X}(x)\), can be derived by intergrating out \(Y\) from the joint PDF:&lt;/p&gt;
+
+\[f_{X}(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)dx\]
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;conditioning-pdfs-on-other-variables&quot;&gt;Conditioning PDFs on Other Variables&lt;/h4&gt;
+&lt;p&gt;A &lt;strong&gt;conditional PDF&lt;/strong&gt; describes the probability density of one variable &lt;strong&gt;given that&lt;/strong&gt; another variable has a specific value.&lt;/p&gt;
+
+&lt;p&gt;For two continuous random variables \(X\) and \(Y\), the conditional probability density function (PDF) of \(X\) given \(Y=y\) is:&lt;/p&gt;
+
+\[f_{X \mid Y}(x \mid y)=\frac{f_{X,Y}(x,y)}{f_{Y}(y)}\]
+
+&lt;ul&gt;
+  &lt;li&gt;The &lt;strong&gt;conditional PDF&lt;/strong&gt; \(f_{X \mid Y}(x \mid y)\) is computed by &lt;strong&gt;dividing the joint PDF&lt;/strong&gt; \(f_{X,Y}(x,y)\) &lt;strong&gt;by the marginal PDF&lt;/strong&gt; \(f_{Y}(y)\).&lt;/li&gt;
+  &lt;li&gt;It &lt;strong&gt;rescales&lt;/strong&gt; the joint distribution to ensure the total probability for a given \(Y=y\) sums to 1.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;binomial-distribution&quot;&gt;Binomial Distribution&lt;/h4&gt;
+&lt;p&gt;The &lt;strong&gt;binomial distribution&lt;/strong&gt; models the number of &lt;strong&gt;successes&lt;/strong&gt; in a fixed number of independent &lt;strong&gt;Bernoulli trials&lt;/strong&gt;, where each trial has &lt;strong&gt;only two possible outcomes: success or failure&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;uniform-distribution&quot;&gt;Uniform Distribution&lt;/h4&gt;
 </description>
         <pubDate>Sun, 02 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/probability/statistics/2025/03/02/random-variables/</link>

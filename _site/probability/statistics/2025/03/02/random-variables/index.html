@@ -65,6 +65,8 @@
 <h4 id="probability-density-function-pdf">Probability Density Function (PDF)</h4>
 <p>\(\int_{-\infty}^{\infty}f_{x}(x)dx = 1\)</p>
 
+<hr />
+
 <h4 id="cumulative-distribution-function-cdf">Cumulative Distribution Function (CDF)</h4>
 <p>\(F_{X}(x) = p(X \leq x)\)</p>
 
@@ -84,18 +86,26 @@
   <li>\(\lim\limits_{x \to \infty} F_X(x) = 1\).</li>
 </ol>
 
-<p>Discrete variables’ <code class="language-plaintext highlighter-rouge">CDF</code>: \(F_{X}(x)=\sum_{k \leq x}p(k)\)</p>
+<h5 id="discrete-variables">Discrete variables’</h5>
+<p>\(F_{X}(x)=\sum_{k \leq x}p(k)\)</p>
 
-<p>Continuous variables’ <code class="language-plaintext highlighter-rouge">CDF</code>: \(F_{X}(x)=\int_{-\infty}^{x}p(y)dy\)</p>
+<h5 id="continuous-variables">Continuous variables’</h5>
+<p>\(F_{X}(x)=\int_{-\infty}^{x}p(y)dy\)</p>
+
+<hr />
 
 <h4 id="joint-probability-distribution">Joint Probability Distribution</h4>
 <p>A <code class="language-plaintext highlighter-rouge">joint probability distribution</code> describes the probability of two (or more) random variables occurring together.</p>
+
+<p><img src="/img/joint_pd_plot.svg" alt="Joint Probability Distribution Plot" /></p>
 
 <h5 id="discrete-varibales">Discrete Varibales</h5>
 <p>\(P(X=x, Y=y)\)</p>
 
 <h5 id="continuous-varibales">Continuous Varibales</h5>
-<p>\(f_{X,Y}(x,y) = \frac{\sigma^2}{\sigma x \sigma y}P(X \leq x, Y \leq y)\)</p>
+<p>\(f_{X,Y}(x,y) = \frac{\sigma^2}{\sigma x \sigma y}P(X \leq x, Y \leq y) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}P(X \leq x, Y \leq y)dxdy\)</p>
+
+<hr />
 
 <h4 id="marginal-probability-distribution">Marginal Probability Distribution</h4>
 <p>A <code class="language-plaintext highlighter-rouge">marginal probability distribution</code> gives the probability of one variable <strong>regardless of the other</strong>. This <strong>marginalizes out</strong> \(Y\) by summing (discrete) or integrating (continuous) over all possible values of \(Y\).</p>
@@ -105,6 +115,36 @@
 
 <h5 id="continuous-varibales-1">Continuous Varibales</h5>
 <p>\(f_{X}(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)dy\)</p>
+
+<hr />
+
+<h4 id="deriving-a-marginal-probability-density-function-pdf-from-a-joint-pdf">Deriving a Marginal Probability Density Function (PDF) from a Joint PDF</h4>
+<p>The marginal probability density function is obtained by <strong>integrating out</strong> the unwanted variable from the joint probability density function.</p>
+
+<p>The marginal PDF of \(X\), which is \(F_{X}(x)\), can be derived by intergrating out \(Y\) from the joint PDF:</p>
+
+\[f_{X}(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)dx\]
+
+<hr />
+
+<h4 id="conditioning-pdfs-on-other-variables">Conditioning PDFs on Other Variables</h4>
+<p>A <strong>conditional PDF</strong> describes the probability density of one variable <strong>given that</strong> another variable has a specific value.</p>
+
+<p>For two continuous random variables \(X\) and \(Y\), the conditional probability density function (PDF) of \(X\) given \(Y=y\) is:</p>
+
+\[f_{X \mid Y}(x \mid y)=\frac{f_{X,Y}(x,y)}{f_{Y}(y)}\]
+
+<ul>
+  <li>The <strong>conditional PDF</strong> \(f_{X \mid Y}(x \mid y)\) is computed by <strong>dividing the joint PDF</strong> \(f_{X,Y}(x,y)\) <strong>by the marginal PDF</strong> \(f_{Y}(y)\).</li>
+  <li>It <strong>rescales</strong> the joint distribution to ensure the total probability for a given \(Y=y\) sums to 1.</li>
+</ul>
+
+<hr />
+
+<h4 id="binomial-distribution">Binomial Distribution</h4>
+<p>The <strong>binomial distribution</strong> models the number of <strong>successes</strong> in a fixed number of independent <strong>Bernoulli trials</strong>, where each trial has <strong>only two possible outcomes: success or failure</strong>.</p>
+
+<h4 id="uniform-distribution">Uniform Distribution</h4>
 
     </div>
 
