@@ -1,5 +1,6 @@
 **/*.DS_Store
 backup/*
+**/temp*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

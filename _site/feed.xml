@@ -5,8 +5,8 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 10 Mar 2025 23:22:56 -0400</pubDate>
-    <lastBuildDate>Mon, 10 Mar 2025 23:22:56 -0400</lastBuildDate>
+    <pubDate>Tue, 11 Mar 2025 06:51:10 -0400</pubDate>
+    <lastBuildDate>Tue, 11 Mar 2025 06:51:10 -0400</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -46,9 +46,9 @@ n \\ k
 
 ###  --&gt;
 </description>
-        <pubDate>Mon, 10 Mar 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/probability/statistics/2025/03/10/probability-recap/</link>
-        <guid isPermaLink="true">http://localhost:4000/probability/statistics/2025/03/10/probability-recap/</guid>
+        <pubDate>Thu, 27 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/probability/statistics/2025/02/27/probability-recap/</link>
+        <guid isPermaLink="true">http://localhost:4000/probability/statistics/2025/02/27/probability-recap/</guid>
         
         <category>Probability</category>
         
@@ -535,32 +535,6 @@ Additional services like Minio (for storage) will also be available: http://loca
       </item>
     
       <item>
-        <title>Things I should have known about Slurm earlier</title>
-        <description>&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;checking log directory existence&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;requeue option&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;automatic log naming&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;useful commands&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/things-I-should-have-known-about-slurm-earlier/</link>
-        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/things-I-should-have-known-about-slurm-earlier/</guid>
-        
-        <category>AWS</category>
-        
-        <category>EC2</category>
-        
-        <category>EBS</category>
-        
-        
-        <category>Large Language Models (LLMs)</category>
-        
-        <category>AWS</category>
-        
-      </item>
-    
-      <item>
         <title>Shell script to attach AWS EBS volume to EC2 instance</title>
         <description>&lt;blockquote&gt;
   &lt;p&gt;Availability Zone of the EBS volume and the EC2 instance must be the same.
@@ -595,39 +569,6 @@ lsblk
         <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/shell-script-to-attach-aws-ebs-volume-to-ec2-instance/</link>
         <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/shell-script-to-attach-aws-ebs-volume-to-ec2-instance/</guid>
-        
-        <category>AWS</category>
-        
-        <category>EC2</category>
-        
-        <category>EBS</category>
-        
-        
-        <category>Large Language Models (LLMs)</category>
-        
-        <category>AWS</category>
-        
-      </item>
-    
-      <item>
-        <title>Looking into Hugging Face GPT-NeoX flash attention</title>
-        <description>&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;problem statement&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;observation&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;trial and errors&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;conclusion&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in GPTNeoXForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;with torch.autocast(device_type=&apos;torch_device&apos;):&lt;/code&gt; decorator, or load the model with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;torch_dtype&lt;/code&gt; argument. Example: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;model = AutoModel.from_pretrained(&quot;openai/whisper-tiny&quot;, attn_implementation=&quot;flash_attention_2&quot;, torch_dtype=torch.float16)&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;observation&quot;&gt;Observation&lt;/h1&gt;
-</description>
-        <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/looking-into-hugging-face-gpt-neox-flash-attention/</link>
-        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/looking-into-hugging-face-gpt-neox-flash-attention/</guid>
         
         <category>AWS</category>
         
