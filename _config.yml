@@ -6,6 +6,7 @@ url: ""
 author: "Kim, Dae Young"
 
 # Build settings
+markdown: kramdown
 kramdown:
   input: GFM
   math_engine: mathjax
