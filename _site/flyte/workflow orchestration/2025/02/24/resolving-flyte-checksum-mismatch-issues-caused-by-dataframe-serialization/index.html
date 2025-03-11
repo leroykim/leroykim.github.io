@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resolving Flyte Checksum Mismatch Issues Caused by DataFrame Serialization - Dae Young Kim</title>
+  <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/flyte/workflow%20orchestration/2025/02/24/resolving-flyte-checksum-mismatch-issues-caused-by-dataframe-serialization/">
+  <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="page-content">
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resolving Flyte Checksum Mismatch Issues Caused by DataFrame Serialization - Dae Young Kim</title>
+  <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/flyte/workflow%20orchestration/2025/02/24/resolving-flyte-checksum-mismatch-issues-caused-by-dataframe-serialization/">
+  <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
+</head>
+
+<div class="post-page">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <title>Resolving Flyte Checksum Mismatch Issues Caused by DataFrame Serialization - Dae Young Kim</title>
+      <h1 class="post-title" itemprop="name headline">Resolving Flyte Checksum Mismatch Issues Caused by DataFrame Serialization</h1>
+      <p class="post-meta">
+        <time datetime="2025-02-24T00:00:00-05:00" itemprop="datePublished">Feb 24, 2025</time>
+         &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span
+            itemprop="name">Dae-young Kim</span></span>
+
+        
+        
+        
+        
+        &middot; <span class="tags" itemprop="tags">
+        
+        <a href="http://localhost:4000/tagged#flyte">#Flyte</a>
+        <a href="http://localhost:4000/tagged#python">#Python</a>
+        </span>
+        
+      </p>
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      <p>When building data pipelines with Flyte, you might encounter a checksum mismatch error during the automatic conversion of a pandas DataFrame into a StructuredDataset (typically in Parquet format). This issue occurs when a task returns a DataFrame, which Flyte serializes and writes to object storage. On subsequent deserialization, even minor variations in the conversion process may lead to a checksum mismatch, causing your workflow to fail.</p>
+
+<p>In this post, I present two simplified examples. The first snippet reproduces the error by returning a DataFrame between tasks, while the second snippet shows the ideal solution: writing the DataFrame to a CSV file and returning a FlyteFile instead.</p>
+
+<h1 id="1-simplest-code-that-reproduces-the-error">1. Simplest Code That Reproduces the Error</h1>
+<p>In this example, one task creates and returns a DataFrame and a downstream task consumes it. In a Flyte environment, this automatic serialization–deserialization process may trigger a checksum mismatch error.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="n">flytekit</span> <span class="kn">import</span> <span class="n">task</span><span class="p">,</span> <span class="n">workflow</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">create_df</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Create a simple DataFrame.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame with sample data.
+    </span><span class="sh">"""</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">col1</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="sh">'</span><span class="s">col2</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">c</span><span class="sh">'</span><span class="p">]}</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">consume_df</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Consume the DataFrame and return the number of rows.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Input DataFrame.
+
+    Returns
+    -------
+    int
+        The number of rows in the DataFrame.
+    </span><span class="sh">"""</span>
+    <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="nd">@workflow</span>
+<span class="k">def</span> <span class="nf">df_workflow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Workflow that passes a DataFrame between tasks.
+    
+    Returns
+    -------
+    int
+        The row count of the DataFrame.
+    </span><span class="sh">"""</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="nf">create_df</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nf">consume_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note: When running this workflow within a proper Flyte environment, the automatic conversion of the DataFrame to a StructuredDataset (Parquet) may trigger a checksum mismatch error during deserialization.</p>
+</blockquote>
+
+<h1 id="2-ideal-code-that-avoids-the-error">2. Ideal Code That Avoids the Error</h1>
+<p>The best practice is to bypass the automatic StructuredDataset conversion by persisting the DataFrame as a CSV file and returning a file artifact (FlyteFile). This approach avoids the extra serialization step that is prone to checksum mismatches.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="n">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="n">flytekit</span> <span class="kn">import</span> <span class="n">task</span><span class="p">,</span> <span class="n">workflow</span><span class="p">,</span> <span class="n">FlyteFile</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">create_and_save_df</span><span class="p">(</span><span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FlyteFile</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Create a simple DataFrame and save it to CSV.
+
+    Parameters
+    ----------
+    output_file : str
+        The file name where the DataFrame is saved.
+
+    Returns
+    -------
+    FlyteFile
+        A FlyteFile reference pointing to the saved CSV file.
+    </span><span class="sh">"""</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">col1</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="sh">'</span><span class="s">col2</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">c</span><span class="sh">'</span><span class="p">]}</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="nc">Path</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nc">FlyteFile</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">consume_file</span><span class="p">(</span><span class="nb">file</span><span class="p">:</span> <span class="n">FlyteFile</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Read the CSV file and return the number of rows.
+
+    Parameters
+    ----------
+    file : FlyteFile
+        The file artifact containing the CSV data.
+
+    Returns
+    -------
+    int
+        The number of rows in the CSV file.
+    </span><span class="sh">"""</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="nb">file</span><span class="p">.</span><span class="nf">download</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nf">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="nd">@workflow</span>
+<span class="k">def</span> <span class="nf">file_workflow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Workflow that uses a CSV file artifact to avoid DataFrame serialization.
+
+    Returns
+    -------
+    int
+        The row count from the CSV file.
+    </span><span class="sh">"""</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nf">create_and_save_df</span><span class="p">(</span><span class="n">output_file</span><span class="o">=</span><span class="sh">"</span><span class="s">sample.csv</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nf">consume_file</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="3-conclusion">3. Conclusion</h1>
+<p>Checksum mismatches in Flyte often arise from the automatic conversion of DataFrames into StructuredDatasets. By writing your DataFrame to a CSV file and returning a FlyteFile instead, you can bypass this extra conversion step and avoid checksum errors.</p>
+
+<p>These simplified examples illustrate both the problematic pattern and the ideal solution. Adjust these patterns according to your pipeline’s requirements to ensure robust and error-free data processing with Flyte.</p>
+
+    </div>
+
+    <hr>
+
+    
+    
+
+    
+  </article>
+</div>
+    <div class="copyright">
+      <p>&copy; 2025 <a href="http://localhost:4000/"><strong>Dae Young Kim</strong></a> ― Powered by <a href="https://jekyllrb.com/">Jekyll</a> and <a
+          href="https://github.com/heiswayi/textlog">Textlog theme</a></p>
+    </div>
+  </div>
+  
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>

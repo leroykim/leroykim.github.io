@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Properly Loading Libraries In Jupyter Notebook - Dae Young Kim</title>
+  <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/large%20language%20models%20(llms)/aws/2025/02/18/properly-loading-libraries-in-jupyter-notebook-kernel/">
+  <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="page-content">
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Properly Loading Libraries In Jupyter Notebook - Dae Young Kim</title>
+  <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/large%20language%20models%20(llms)/aws/2025/02/18/properly-loading-libraries-in-jupyter-notebook-kernel/">
+  <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
+</head>
+
+<div class="post-page">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <title>Properly Loading Libraries In Jupyter Notebook - Dae Young Kim</title>
+      <h1 class="post-title" itemprop="name headline">Properly Loading Libraries In Jupyter Notebook</h1>
+      <p class="post-meta">
+        <time datetime="2025-02-18T00:00:00-05:00" itemprop="datePublished">Feb 18, 2025</time>
+         &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span
+            itemprop="name">Dae-young Kim</span></span>
+
+        
+        
+        
+        
+        &middot; <span class="tags" itemprop="tags">
+        
+        
+        <a href="http://localhost:4000/tagged#jupyter-notebook">#Jupyter Notebook</a>
+        <a href="http://localhost:4000/tagged#ipython">#IPython</a>
+        <a href="http://localhost:4000/tagged#python">#Python</a>
+        </span>
+        
+      </p>
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      <p>When a Jupyter Notebook kernel starts, it loads the libraries into the kernel’s memory space. This means that when you import a library, the kernel keeps it in memory for subsequent use within the same session. If the kernel is restarted, the libraries will need to be loaded again.</p>
+
+<p>The code is particulary helpful when you are using your custom libraries which needs frequent code modification:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">IPython</span>
+
+<span class="n">IPython</span><span class="p">.</span><span class="n">Application</span><span class="p">.</span><span class="nf">instance</span><span class="p">().</span><span class="n">kernel</span><span class="p">.</span><span class="nf">do_shutdown</span><span class="p">(</span><span class="n">restart</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Otherwise, you have to manually click <code class="language-plaintext highlighter-rouge">Restart</code> button before you run the code after code modification.</p>
+
+    </div>
+
+    <hr>
+
+    
+    
+
+    
+  </article>
+</div>
+    <div class="copyright">
+      <p>&copy; 2025 <a href="http://localhost:4000/"><strong>Dae Young Kim</strong></a> ― Powered by <a href="https://jekyllrb.com/">Jekyll</a> and <a
+          href="https://github.com/heiswayi/textlog">Textlog theme</a></p>
+    </div>
+  </div>
+  
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>

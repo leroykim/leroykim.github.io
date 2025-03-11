@@ -1,13 +1,694 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dae-young Kim (Leroy)</title>
+    <title>Dae Young Kim</title>
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Jan 2025 14:23:51 -0500</pubDate>
-    <lastBuildDate>Tue, 21 Jan 2025 14:23:51 -0500</lastBuildDate>
+    <pubDate>Mon, 10 Mar 2025 23:22:56 -0400</pubDate>
+    <lastBuildDate>Mon, 10 Mar 2025 23:22:56 -0400</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Probability Recap</title>
+        <description>&lt;h2 id=&quot;basics&quot;&gt;Basics&lt;/h2&gt;
+&lt;h3 id=&quot;conditional-probability&quot;&gt;Conditional Probability&lt;/h3&gt;
+
+\[P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}\]
+
+&lt;ul&gt;
+  &lt;li&gt;\(P(A)\): the prior&lt;/li&gt;
+  &lt;li&gt;\(P(B \mid A)\): the likelihood&lt;/li&gt;
+  &lt;li&gt;\(P(A \mid B)\): the posterior&lt;/li&gt;
+  &lt;li&gt;\(P(A \mid B) = P(A)\): A and B are Independent.&lt;/li&gt;
+  &lt;li&gt;\(P(A \cap B \mid C)=P(A \mid C)P(B \mid C)\): A and B are conditionally independent on the occurence of the event C.&lt;/li&gt;
+  &lt;li&gt;Often has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;given that&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;law-of-total-probability&quot;&gt;Law of Total Probability&lt;/h3&gt;
+&lt;p&gt;Formally, if \(B_1, B_2, \ldots , B_n\) form a partition of the sample space (i.e., they are mutually exclusive and exhaustive events), then for any event \(A\):&lt;/p&gt;
+
+\[P(A)=\sum_iP(A \mid B_i)P(B_i)\]
+
+&lt;p&gt;It provides a convenient way to think about partitioning events. Often comes with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tree of outcomes&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;combination&quot;&gt;Combination&lt;/h3&gt;
+
+\[\left( \begin{array}{c}
+n \\ k
+\end{array} \right) = \frac{n!}{k!(n-k)!}\]
+
+&lt;h3 id=&quot;permutation&quot;&gt;Permutation&lt;/h3&gt;
+
+\[\frac{n!}{(n-k)!}\]
+
+&lt;!-- ### Random Variables
+
+###  --&gt;
+</description>
+        <pubDate>Mon, 10 Mar 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/probability/statistics/2025/03/10/probability-recap/</link>
+        <guid isPermaLink="true">http://localhost:4000/probability/statistics/2025/03/10/probability-recap/</guid>
+        
+        <category>Probability</category>
+        
+        <category>Statistics</category>
+        
+        
+        <category>Probability</category>
+        
+        <category>Statistics</category>
+        
+      </item>
+    
+      <item>
+        <title>Setting Up Flyte (A Step-by-Step Guide)</title>
+        <description>&lt;p&gt;Flyte is a powerful workflow automation platform designed for machine learning and data engineering tasks. This guide will walk you through the setup process, including configuring a virtual environment, installing dependencies, setting up Docker, and running Flyte in a sandbox environment.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-setting-up-a-virtual-environment&quot;&gt;1. Setting Up a Virtual Environment&lt;/h2&gt;
+&lt;p&gt;Before installing Flyte, it’s recommended to use a virtual environment to manage dependencies and ensure an isolated setup.&lt;/p&gt;
+
+&lt;h3 id=&quot;check-python-version-and-install-virtual-environment&quot;&gt;Check Python Version and Install Virtual Environment&lt;/h3&gt;
+&lt;p&gt;Run the following commands to ensure you have Python 3 installed and set up a virtual environment:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python3 &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python3-venv
+python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;poetry
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;install-required-packages&quot;&gt;Install Required Packages&lt;/h3&gt;
+&lt;p&gt;If you are starting a new project, you can initialize a Poetry environment with:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;poetry init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are adopting Flyte in an existing project, ensure that your dependencies are properly managed within Poetry. Run:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;poetry &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will install all dependencies defined in your project’s pyproject.toml file. If you haven’t defined Flyte dependencies yet, you may need to add them manually:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;poetry add flytekit flytectl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Poetry will manage package versions and dependencies, making it easier to integrate Flyte into your existing workflow.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-installing-docker&quot;&gt;2. Installing Docker&lt;/h2&gt;
+&lt;p&gt;Flyte requires Docker to run in a sandbox environment. Follow these steps to install Docker on your system.&lt;/p&gt;
+
+&lt;h3 id=&quot;install-docker-dependencies&quot;&gt;Install Docker Dependencies&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ca-certificates curl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;add-dockers-official-gpg-key&quot;&gt;Add Docker’s Official GPG Key&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 0755 &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; /etc/apt/keyrings
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://download.docker.com/linux/ubuntu/gpg &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /etc/apt/keyrings/docker.asc
+&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;a+r /etc/apt/keyrings/docker.asc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;add-docker-repository-to-apt-sources&quot;&gt;Add Docker Repository to Apt Sources&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&quot;deb [arch=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;--print-architecture&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; /etc/os-release &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;UBUNTU_CODENAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$VERSION_CODENAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; stable&quot;&lt;/span&gt; | &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;sudo tee&lt;/span&gt; /etc/apt/sources.list.d/docker.list &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;install-docker-engine-and-cli&quot;&gt;Install Docker Engine and CLI&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;verify-docker-installation&quot;&gt;Verify Docker Installation&lt;/h3&gt;
+&lt;p&gt;Check if Docker is running correctly by listing the Docker socket:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; /var/run/docker.sock
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;add-user-to-docker-group&quot;&gt;Add User to Docker Group&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;newgrp docker
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-aG&lt;/span&gt; docker &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Reboot your system to apply these changes:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-installing-flytectl-flyte-cli&quot;&gt;3. Installing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flytectl&lt;/code&gt; (Flyte CLI)&lt;/h2&gt;
+&lt;p&gt;Flyte’s command-line tool, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flytectl&lt;/code&gt;, allows you to manage projects, workflows, and tasks.
+Install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jq&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;flytectl&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jq
+curl &lt;span class=&quot;nt&quot;&gt;-sL&lt;/span&gt; https://ctl.flyte.org/install | &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4-configuring-flyte-sandbox&quot;&gt;4. Configuring Flyte Sandbox&lt;/h2&gt;
+&lt;p&gt;The Flyte Sandbox provides an easy way to run Flyte locally for development and testing.&lt;/p&gt;
+&lt;h3 id=&quot;create-flyte-configuration-file&quot;&gt;Create Flyte Configuration File&lt;/h3&gt;
+&lt;p&gt;Create the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.flyte/config-sandbox.yaml&lt;/code&gt; and add the following content:&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;flyte&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;localhost:30080&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;authType&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pkce&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;insecure&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;start-flyte-sandbox&quot;&gt;Start Flyte Sandbox&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FLYTECTL_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~/.flyte/config-sandbox.yaml
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;flytectl demo start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After running this command, you should see output indicating that Flyte is successfully running. The Flyte UI will be available at: http://localhost:30080/console
+Additional services like Minio (for storage) will also be available: http://localhost:30080/minio&lt;/p&gt;
+
+&lt;h2 id=&quot;5-example-flyte-project-directory-structure&quot;&gt;5. Example Flyte Project Directory Structure&lt;/h2&gt;
+&lt;p&gt;When setting up a Flyte project, your directory structure may look something like this:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;flyte_project/
+├── pyproject.toml
+├── poetry.lock
+├── dataset
+└── workflow_codes/
+    ├── imageSpec.yaml
+    ├── project_definition.yaml
+    └── codes/
+        ├── __init__.py
+        ├── workflow.py
+        ├── tasks.py
+        └── utils.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;explanation-of-files-and-directories&quot;&gt;Explanation of Files and Directories&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; – Configuration file for Poetry dependencies.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;poetry.lock&lt;/code&gt; – Auto-generated file that locks dependency versions.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dataset&lt;/code&gt; - dataset directory. We will copy this when running example workflow.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workflow_codes/&lt;/code&gt; – Main directory containing Flyte workflows.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;imageSpec.yaml&lt;/code&gt; – Defines the Docker image specification for Flyte workflows.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project_definition.yaml&lt;/code&gt; – Defines the Flyte project metadata.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;codes/&lt;/code&gt; – Contains Python files defining Flyte workflows, tasks, and utilities.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-creating-a-new-flyte-project&quot;&gt;6. Creating a New Flyte Project&lt;/h2&gt;
+&lt;p&gt;Once Flyte is running, you can create a new project to organize your workflows.&lt;/p&gt;
+
+&lt;h3 id=&quot;define-project-configuration&quot;&gt;Define Project Configuration&lt;/h3&gt;
+&lt;p&gt;Ensure you have a project definition file (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workflow_codes/project_definition.yaml&lt;/code&gt;) and populate it with necessary metadata.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-project-in-flyte&quot;&gt;Create Project in Flyte&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;flytectl create project &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; ./workflow_codes/project_definition.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;project_definitionyaml-example&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project_definition.yaml&lt;/code&gt; example&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;flyteproject&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;flyteproject&quot;&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;The&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pipeline&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;orchestrate&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;processing&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;training&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;project.&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;example-workflow&quot;&gt;Example workflow&lt;/h3&gt;
+&lt;p&gt;Once your project is set up, you can define and execute workflows. Here’s an example of a simple Flyte workflow:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# workflow.py
+&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pathlib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Path&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flytekit&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;workflow&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Define the dataset path based on the copied directory inside the container
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DATASET_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/dataset&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_files_in_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Lists all files inside the dataset directory.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATASET_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FileNotFoundError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Dataset directory &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DATASET_DIR&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; not found!&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATASET_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;iterdir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;say_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Prints a greeting along with dataset files.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dataset_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Dataset contains &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; files: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Dataset is empty.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hello, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;! &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_info&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@workflow&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;greeting_workflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Workflow that lists dataset files and prints a greeting.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;list_files_in_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;say_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;7-running-workflows-in-flyte-sandbox-cluster&quot;&gt;7. Running workflows in Flyte Sandbox Cluster&lt;/h2&gt;
+&lt;p&gt;To execute the workflow on the Flyte sandbox cluster, use the pyflyte run command. This ensures the workflow is executed in a Flyte-managed environment.&lt;/p&gt;
+
+&lt;h3 id=&quot;execute-the-workflow-in-flyte-sandbox&quot;&gt;Execute the workflow in Flyte Sandbox&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pyflyte run &lt;span class=&quot;nt&quot;&gt;--remote&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--image&lt;/span&gt; ./workflow_codes/imageSpec.yaml &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; flyteproject &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; development ./workflow_codes/codes/workflow.py greeting_workflow
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;explanation-of-command-arguments&quot;&gt;Explanation of Command Arguments&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--remote&lt;/code&gt; → Runs the workflow in the Flyte sandbox cluster instead of locally.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--image&lt;/code&gt; ./workflow_codes/imageSpec.yaml → Specifies the Docker image to use for execution.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p flyteproject&lt;/code&gt; → Specifies the Flyte project name.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-d development&lt;/code&gt; → Specifies the domain (development/staging/production).&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./workflow_codes/workflow.py greeting_workflow&lt;/code&gt; → Specifies the script and workflow function.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;imagespecyaml-example&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;imageSpec.yaml&lt;/code&gt; example&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;python_version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3.12.3&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;registry&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;localhost:30000&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;packages&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;beautifulsoup4&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pandas&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tqdm&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;chardet&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ujson&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;lxml&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jupyter&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;tokenizers&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;loguru&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pytz&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;spacy&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;plotly&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;datasets&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;csvkit&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;lz4&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dask[dataframe]&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;distributed&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;cloudpickle&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;flytekit&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dataset&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;Debug&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;True&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python_version&lt;/code&gt;: Specifies the Python version.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;registry&lt;/code&gt;: Uses a local Docker registry.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packages&lt;/code&gt;: List of dependencies for Flyte workflows.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copy&lt;/code&gt;: Directories to copy into the container.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;env&lt;/code&gt;: Environment variables.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 26 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/flyte/workflow%20orchestration/2025/02/26/setting-up-flyte/</link>
+        <guid isPermaLink="true">http://localhost:4000/flyte/workflow%20orchestration/2025/02/26/setting-up-flyte/</guid>
+        
+        <category>Flyte</category>
+        
+        <category>Python</category>
+        
+        <category>Ubuntu</category>
+        
+        
+        <category>Flyte</category>
+        
+        <category>Workflow Orchestration</category>
+        
+      </item>
+    
+      <item>
+        <title>Resolving Flyte Checksum Mismatch Issues Caused by DataFrame Serialization</title>
+        <description>&lt;p&gt;When building data pipelines with Flyte, you might encounter a checksum mismatch error during the automatic conversion of a pandas DataFrame into a StructuredDataset (typically in Parquet format). This issue occurs when a task returns a DataFrame, which Flyte serializes and writes to object storage. On subsequent deserialization, even minor variations in the conversion process may lead to a checksum mismatch, causing your workflow to fail.&lt;/p&gt;
+
+&lt;p&gt;In this post, I present two simplified examples. The first snippet reproduces the error by returning a DataFrame between tasks, while the second snippet shows the ideal solution: writing the DataFrame to a CSV file and returning a FlyteFile instead.&lt;/p&gt;
+
+&lt;h1 id=&quot;1-simplest-code-that-reproduces-the-error&quot;&gt;1. Simplest Code That Reproduces the Error&lt;/h1&gt;
+&lt;p&gt;In this example, one task creates and returns a DataFrame and a downstream task consumes it. In a Flyte environment, this automatic serialization–deserialization process may trigger a checksum mismatch error.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flytekit&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;workflow&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+    Create a simple DataFrame.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame with sample data.
+    &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;col1&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;col2&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;consume_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+    Consume the DataFrame and return the number of rows.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Input DataFrame.
+
+    Returns
+    -------
+    int
+        The number of rows in the DataFrame.
+    &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@workflow&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;df_workflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+    Workflow that passes a DataFrame between tasks.
+    
+    Returns
+    -------
+    int
+        The row count of the DataFrame.
+    &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;consume_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: When running this workflow within a proper Flyte environment, the automatic conversion of the DataFrame to a StructuredDataset (Parquet) may trigger a checksum mismatch error during deserialization.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;2-ideal-code-that-avoids-the-error&quot;&gt;2. Ideal Code That Avoids the Error&lt;/h1&gt;
+&lt;p&gt;The best practice is to bypass the automatic StructuredDataset conversion by persisting the DataFrame as a CSV file and returning a file artifact (FlyteFile). This approach avoids the extra serialization step that is prone to checksum mismatches.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pathlib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Path&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flytekit&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;workflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FlyteFile&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_and_save_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FlyteFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+    Create a simple DataFrame and save it to CSV.
+
+    Parameters
+    ----------
+    output_file : str
+        The file name where the DataFrame is saved.
+
+    Returns
+    -------
+    FlyteFile
+        A FlyteFile reference pointing to the saved CSV file.
+    &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;col1&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;col2&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FlyteFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@task&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;consume_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FlyteFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+    Read the CSV file and return the number of rows.
+
+    Parameters
+    ----------
+    file : FlyteFile
+        The file artifact containing the CSV data.
+
+    Returns
+    -------
+    int
+        The number of rows in the CSV file.
+    &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@workflow&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;file_workflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+    Workflow that uses a CSV file artifact to avoid DataFrame serialization.
+
+    Returns
+    -------
+    int
+        The row count from the CSV file.
+    &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create_and_save_df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;sample.csv&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;consume_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;3-conclusion&quot;&gt;3. Conclusion&lt;/h1&gt;
+&lt;p&gt;Checksum mismatches in Flyte often arise from the automatic conversion of DataFrames into StructuredDatasets. By writing your DataFrame to a CSV file and returning a FlyteFile instead, you can bypass this extra conversion step and avoid checksum errors.&lt;/p&gt;
+
+&lt;p&gt;These simplified examples illustrate both the problematic pattern and the ideal solution. Adjust these patterns according to your pipeline’s requirements to ensure robust and error-free data processing with Flyte.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 24 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/flyte/workflow%20orchestration/2025/02/24/resolving-flyte-checksum-mismatch-issues-caused-by-dataframe-serialization/</link>
+        <guid isPermaLink="true">http://localhost:4000/flyte/workflow%20orchestration/2025/02/24/resolving-flyte-checksum-mismatch-issues-caused-by-dataframe-serialization/</guid>
+        
+        <category>Flyte</category>
+        
+        <category>Python</category>
+        
+        
+        <category>Flyte</category>
+        
+        <category>Workflow Orchestration</category>
+        
+      </item>
+    
+      <item>
+        <title>Properly Loading Libraries In Jupyter Notebook</title>
+        <description>&lt;p&gt;When a Jupyter Notebook kernel starts, it loads the libraries into the kernel’s memory space. This means that when you import a library, the kernel keeps it in memory for subsequent use within the same session. If the kernel is restarted, the libraries will need to be loaded again.&lt;/p&gt;
+
+&lt;p&gt;The code is particulary helpful when you are using your custom libraries which needs frequent code modification:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IPython&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;IPython&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Application&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;do_shutdown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Otherwise, you have to manually click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Restart&lt;/code&gt; button before you run the code after code modification.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 18 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/02/18/properly-loading-libraries-in-jupyter-notebook-kernel/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/02/18/properly-loading-libraries-in-jupyter-notebook-kernel/</guid>
+        
+        <category>Jupyter Notebook</category>
+        
+        <category>IPython</category>
+        
+        <category>Python</category>
+        
+        
+        <category>Large Language Models (LLMs)</category>
+        
+        <category>AWS</category>
+        
+      </item>
+    
+      <item>
+        <title>Ensuring Correct Execution Context in Ray Tune’s Distributed Environment</title>
+        <description>&lt;h1 id=&quot;how-raytunetuner-works&quot;&gt;How &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ray.tune.Tuner&lt;/code&gt; works?&lt;/h1&gt;
+&lt;p&gt;Let’s say we define a tuner and its trainable like this:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;MODEL_CONFIG&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;RAY_HP_SPACE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;trainable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;...&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tuner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tune&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Tuner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;trainable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tune_config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tune&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TuneConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;bp&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;param_space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RAY_HP_SPACE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;These are the three steps happens inside during the hyperparameter search using Ray Tune.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Tuner Captures the Context:&lt;/strong&gt; When you initialize the Tuner, it stores (or “captures”) the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;trainable&lt;/code&gt; function as part of its configuration. That function’s closure includes any local variables (like the trial-specific configuration passed to it) and references to global variables (like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODEL_CONFIG&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Serialization and Distribution:&lt;/strong&gt; Ray Tune then serializes (pickles) the Tuner—including the captured &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;trainable&lt;/code&gt; function—and sends it to a remote worker process.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Independent Remote Environment:&lt;/strong&gt; The remote worker process has its own environment, independent of the driver. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODEL_CONFIG&lt;/code&gt; was captured as a global variable and is not correctly defined or available in the worker’s environment, it may end up being &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;None&lt;/code&gt; (or have an unexpected value). This leads to errors when the worker calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;trainable&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;key-concepts&quot;&gt;Key Concepts&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Trainable:&lt;/strong&gt; an object that you can pass into a Tune run.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Closure:&lt;/strong&gt; a programming concept where a function “remembers” the environment in which it was created. This means that the function retains access to variables from its surrounding scope—even after that scope has finished executing.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;reference&quot;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.ray.io/en/latest/tune/getting-started.html&quot;&gt;Getting Started with Ray Tune&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.ray.io/en/latest/tune/key-concepts.html#ray-tune-trainables&quot;&gt;Ray Tune Trainables&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.ray.io/en/latest/tune/tutorials/tune-resources.html&quot;&gt;A Guide To Parallelism and Resources for Ray Tune&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Fri, 07 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/hyperparameter%20search/ray%20tune/2025/02/07/ensuring-correct-execution-context-in-ray/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/hyperparameter%20search/ray%20tune/2025/02/07/ensuring-correct-execution-context-in-ray/</guid>
+        
+        <category>LLM</category>
+        
+        <category>RAY Tune</category>
+        
+        <category>Closure</category>
+        
+        
+        <category>Large Language Models (LLMs)</category>
+        
+        <category>Hyperparameter Search</category>
+        
+        <category>RAY Tune</category>
+        
+      </item>
+    
+      <item>
+        <title>Things I should have known about Slurm earlier</title>
+        <description>&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;checking log directory existence&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;requeue option&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;automatic log naming&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;useful commands&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/things-I-should-have-known-about-slurm-earlier/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/things-I-should-have-known-about-slurm-earlier/</guid>
+        
+        <category>AWS</category>
+        
+        <category>EC2</category>
+        
+        <category>EBS</category>
+        
+        
+        <category>Large Language Models (LLMs)</category>
+        
+        <category>AWS</category>
+        
+      </item>
+    
+      <item>
+        <title>Shell script to attach AWS EBS volume to EC2 instance</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Availability Zone of the EBS volume and the EC2 instance must be the same.
+Attach the EBS volume to the EC2 instance and run the script.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Run `chmod +x mount_ebs.sh` to make it executable.&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;MOUNT_DIRECTORY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;EBS&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;EBS_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/dev/nvme1n1&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;########################################&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;# Attaching Elastic Block Store (EBS). #&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;########################################&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Mount directory: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MOUNT_DIRECTORY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;EBS path: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$EBS_PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;% lsblk&quot;&lt;/span&gt;
+lsblk
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%sudo mount --source &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$EBS_PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; --target &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MOUNT_DIRECTORY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount &lt;span class=&quot;nt&quot;&gt;--source&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$EBS_PATH&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--target&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$MOUNT_DIRECTORY&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;% ls &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MOUNT_DIRECTORY&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$MOUNT_DIRECTORY&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/shell-script-to-attach-aws-ebs-volume-to-ec2-instance/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/shell-script-to-attach-aws-ebs-volume-to-ec2-instance/</guid>
+        
+        <category>AWS</category>
+        
+        <category>EC2</category>
+        
+        <category>EBS</category>
+        
+        
+        <category>Large Language Models (LLMs)</category>
+        
+        <category>AWS</category>
+        
+      </item>
+    
+      <item>
+        <title>Looking into Hugging Face GPT-NeoX flash attention</title>
+        <description>&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;problem statement&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;observation&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;trial and errors&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;conclusion&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in GPTNeoXForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;with torch.autocast(device_type=&apos;torch_device&apos;):&lt;/code&gt; decorator, or load the model with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;torch_dtype&lt;/code&gt; argument. Example: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;model = AutoModel.from_pretrained(&quot;openai/whisper-tiny&quot;, attn_implementation=&quot;flash_attention_2&quot;, torch_dtype=torch.float16)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;observation&quot;&gt;Observation&lt;/h1&gt;
+</description>
+        <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/looking-into-hugging-face-gpt-neox-flash-attention/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/aws/2025/01/28/looking-into-hugging-face-gpt-neox-flash-attention/</guid>
+        
+        <category>AWS</category>
+        
+        <category>EC2</category>
+        
+        <category>EBS</category>
+        
+        
+        <category>Large Language Models (LLMs)</category>
+        
+        <category>AWS</category>
+        
+      </item>
+    
+      <item>
+        <title>macOS setting default python version</title>
+        <description>&lt;h2 id=&quot;1-python-installation-via-homebrew&quot;&gt;1. Python installation via Homebrew&lt;/h2&gt;
+&lt;p&gt;Homebrew maintains its python version schema as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python@X.Y&lt;/code&gt;.
+For example, to install python 3.11, it would be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew install python@3.11&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-update-macos-python-symbolic-link&quot;&gt;2. Update macOS python symbolic link&lt;/h2&gt;
+&lt;p&gt;After the installation, it will tell you the installed location.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Unversioned and major-versioned symlinks &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python-config&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3-config&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;pip&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;pip3&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, etc. pointing to
+&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3.11&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3.11-config&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;pip3.11&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; etc., respectively, are installed into
+/opt/homebrew/opt/python@3.11/libexec/bin &lt;span class=&quot;c&quot;&gt;# Here&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Unlink existing symbolic link.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;unlink&lt;/span&gt; /usr/local/bin/python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create symbolic link again with the desired python version.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /opt/homebrew/opt/python@3.11/libexec/bin/python3 /usr/local/bin/python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Close and reopen the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt; app and check if it works.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+Python 3.11.11
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://devguide.python.org/versions/&quot;&gt;Status of Python versions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.brew.sh/Homebrew-and-Python#python-3&quot;&gt;Homebrew Python documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/a/38806058&quot;&gt;Stack Overflow: How to set Python’s default version to 3.x on OS X?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 25 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/python/macos/2025/01/25/macos-setting-default-python-version/</link>
+        <guid isPermaLink="true">http://localhost:4000/python/macos/2025/01/25/macos-setting-default-python-version/</guid>
+        
+        <category>Python</category>
+        
+        <category>Homebrew</category>
+        
+        
+        <category>Python</category>
+        
+        <category>macOS</category>
+        
+      </item>
     
       <item>
         <title>Slurm commands and templates</title>
@@ -23,21 +704,24 @@
 &lt;h2 id=&quot;graphic-card-usage-check&quot;&gt;Graphic Card Usage Check&lt;/h2&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;srun &lt;span class=&quot;nt&quot;&gt;--jobid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;job_id&amp;gt; nvidia-smi
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;YOU MUST CREATE SLURM LOG DIRECTORY IF YOU DESIGNATE SPECIFIC ONE!&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&quot;sbatch-template&quot;&gt;Sbatch template&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&quot;language-shell-script&quot;&gt;#!/bin/bash
-#SBATCH --job-name &amp;lt;job name&amp;gt;                       # Job name
-#SBATCH --ntasks 2                                  # Number of tasks
-#SBATCH --time 3-00                                 # Runtime
-#SBATCH --mem-per-gpu=30G                           # Reserve 30 GB memory per GPU
-#SBATCH --partition gpu                             # Partition to submit
-#SBATCH --output job-log-%j.txt                     # Standard out will be written to this file
-#SBATCH --error job-log-%j.txt                      # Standard err will be written to this file
-#SBATCH --mail-user &amp;lt;email&amp;gt;                         # This is the email you wish to be notified at
-#SBATCH --mail-type ALL                             # Alert types to get via email
-#SBATCH --nodelist=&amp;lt;nodelist&amp;gt;                       # Node list to submit the job
-#SBATCH --gres=gpu:2                                # Number of gpu to reserve
-#SBATCH --requeue                                   # Requeue when the job is cancelled
+#SBATCH --job-name &amp;lt;job name&amp;gt;       # Job name
+#SBATCH --ntasks 2                  # Number of tasks
+#SBATCH --time 3-00                 # Runtime
+#SBATCH --mem-per-gpu=30G           # Reserve 30 GB memory per GPU
+#SBATCH --partition gpu             # Partition to submit
+#SBATCH --output job-log-%j.txt     # Standard out will be written to this file
+#SBATCH --error job-log-%j.txt      # Standard err will be written to this file
+#SBATCH --mail-user &amp;lt;email&amp;gt;         # This is the email you wish to be notified at
+#SBATCH --mail-type ALL             # Alert types to get via email
+#SBATCH --nodelist=&amp;lt;nodelist&amp;gt;       # Node list to submit the job
+#SBATCH --gres=gpu:2                # Number of gpu to reserve
+#SBATCH --requeue                   # Requeue when the job is cancelled
 
 spack load &amp;lt;dependency name&amp;gt;
 module load &amp;lt;dependency name&amp;gt;
@@ -51,8 +735,8 @@ deepspeed your_code.py
 &lt;/code&gt;&lt;/pre&gt;
 </description>
         <pubDate>Tue, 21 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates/</link>
-        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates/</guid>
+        <link>http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates-copy/</link>
+        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates-copy/</guid>
         
         <category>HPC</category>
         
@@ -60,252 +744,6 @@ deepspeed your_code.py
         
         
         <category>Large Language Models (LLMs)</category>
-        
-      </item>
-    
-      <item>
-        <title>What&apos;s Jekyll?</title>
-        <description>&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/jekyll/jekyll/blob/master/README.markdown&quot;&gt;the project’s readme&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;It’s an immensely useful tool. Find out more by &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 15 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2017/01/15/whats-jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/15/whats-jekyll/</guid>
-        
-        <category>Demo</category>
-        
-        <category>Jekyll</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>History of Lorem Ipsum</title>
-        <description>&lt;h3 id=&quot;what-is-lorem-ipsum&quot;&gt;What is Lorem ipsum?&lt;/h3&gt;
-
-&lt;p&gt;A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.&lt;/p&gt;
-
-&lt;p&gt;For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval.&lt;/p&gt;
-
-&lt;p&gt;The important factor when using Lorem ipsum text is that the text looks realistic otherwise the brochure or book will not look very good. Lorem Ipsum is dummy text which has no meaning however looks very similar to real text.&lt;/p&gt;
-
-&lt;p&gt;Common names for Lorem ipsum text include:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;blind text&lt;/li&gt;
-  &lt;li&gt;dummy text&lt;/li&gt;
-  &lt;li&gt;greeked text&lt;/li&gt;
-  &lt;li&gt;placeholder text&lt;/li&gt;
-  &lt;li&gt;mock content&lt;/li&gt;
-  &lt;li&gt;filler text&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;where-did-it-come-from-&quot;&gt;Where did it come from ?&lt;/h3&gt;
-
-&lt;p&gt;In design magazine, Before and After Magazine, a journalist wrote in volume 4, number 2 the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;After telling everyone that Lorem ipsum, the nonsensical text that comes with PageMaker, only looks like Latin but actually says nothing, I heard from Richard McClintock, publication director at the Hampden-Sydney College in Virginia, who had enlightening news:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Lorem ipsum is latin, slightly jumbled, the remnants of a passage from Cicero’s ‘De finibus bonorum et malorum’ 1.10.32, which begins ‘Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…’ [There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain.]. [de Finibus Bonorum et Malorum, written in 45 BC, is a treatise on the theory of ethics very popular in the Renaisance.]&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;What I find remarkable is that this text has been the industry’s standard dummy text ever since some printed in the 1500s took a galley of type and scrambled it to make a type specimen book; it has survived not only four centuries of letter-by-letter resetting but even the leap into electronic typesetting, essentially unchanged except for an occasional ‘ing’ or ‘y’ thrown in. It’s ironic that when the then-understood Latin was scrambled, it became as incomprehensible as Greek; the phrase ‘it’s Greek to me’ and ‘greeking’ have common semantic roots!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.alienshore.com/seeking/&quot;&gt;Rick Pali&lt;/a&gt; submitted this article to alt.fonts faqs because it was stated there that no one knew where it came from.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 15 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2017/01/15/history-of-lorem-ipsum/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/15/history-of-lorem-ipsum/</guid>
-        
-        <category>Demo</category>
-        
-        <category>Lorem Ipsum</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Example content</title>
-        <description>&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2 id=&quot;inline-html-elements&quot;&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-  &lt;li&gt;Citations, like &lt;cite&gt;— Mark otto&lt;/cite&gt;, should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h2&gt;
-
-&lt;p&gt;Footnotes are supported as part of the Markdown syntax. Here’s one in action. Clicking this number&lt;sup id=&quot;fnref:fn-sample_footnote&quot;&gt;&lt;a href=&quot;#fn:fn-sample_footnote&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; will lead you to a footnote. The syntax looks like:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Clicking this number[^fn-sample_footnote]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Each footnote needs the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;^fn-&lt;/code&gt; prefix and a unique ID to be referenced for the footnoted content. The syntax for that list looks something like this:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[^fn-sample_footnote]: Handy! Now click the return link to go back.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;You can place the footnoted content wherever you like. Markdown parsers should properly place it at the bottom of the post.&lt;/p&gt;
-
-&lt;h2 id=&quot;heading&quot;&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3 id=&quot;code&quot;&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Inline code is available with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;code&amp;gt;&lt;/code&gt; element. Snippets of multiple lines of code are supported through Pygments. Longer lines will automatically scroll horizontally when needed.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;return a + b&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3 id=&quot;lists&quot;&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-  &lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-  &lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-  &lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-  &lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;images&quot;&gt;Images&lt;/h3&gt;
-
-&lt;p&gt;Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://placehold.it/800x400&quot; alt=&quot;placeholder&quot; title=&quot;Large example image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://placehold.it/400x200&quot; alt=&quot;placeholder&quot; title=&quot;Medium example image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://placehold.it/200x200&quot; alt=&quot;placeholder&quot; title=&quot;Small example image&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;tables&quot;&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Footnotes:&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:fn-sample_footnote&quot;&gt;
-      &lt;p&gt;Handy! Now click the return link to go back. &lt;a href=&quot;#fnref:fn-sample_footnote&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sun, 15 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2017/01/15/example-content/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/15/example-content/</guid>
-        
-        <category>Demo</category>
-        
-        <category>Example Content</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>About this Jekyll theme</title>
-        <description>&lt;p&gt;Textlog is a minimalist, lefty-style Jekyll theme designed for documentation based blog.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Content-focused post layout&lt;/li&gt;
-  &lt;li&gt;Using system fonts like GitHub - no Google Fonts&lt;/li&gt;
-  &lt;li&gt;Supports article tagging&lt;/li&gt;
-  &lt;li&gt;White clean design&lt;/li&gt;
-  &lt;li&gt;Contains intro section on homepage&lt;/li&gt;
-  &lt;li&gt;Supports comment if enabled - using &lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus comment&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Responsive and mobile-friendly&lt;/li&gt;
-  &lt;li&gt;Post can have specific author name displayed on post metadata - apply via yaml front matter&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/heiswayi/textlog&quot;&gt;Source code on GitHub&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 15 Jan 2017 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2017/01/15/about-this-jekyll-theme/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/01/15/about-this-jekyll-theme/</guid>
-        
-        <category>Demo</category>
-        
-        <category>Jekyll</category>
-        
         
       </item>
     

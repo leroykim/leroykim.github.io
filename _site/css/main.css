@@ -25,6 +25,11 @@ body {
   max-width: 48rem;
 }
 
+.copyright {
+  width: 90%;
+  max-width: 48rem;
+}
+
 /**
  * Reset some basic elements
  */
@@ -446,13 +451,28 @@ code {
 }
 /**
  * Copyright section
+ * ------------------
+ * This section aligns its left edge with the post content.
+ * It removes the auto horizontal margins and centers the text to the left.
+ *
+ * Parameters
+ * ----------
+ * $max-width : Maximum width for the content.
+ * $spacing-unit : Spacing unit used for vertical spacing.
+ * $small-font-size : Font size for small text.
+ * $code-font-family : Monospace font family.
+ * $grey-color : Base grey color.
+ * $grey-color-dark : Darker grey used for links.
  */
 .copyright {
-  margin-top: 2rem;
+  max-width: 48rem;
+  margin: 2rem 0 0;
+  text-align: left;
   font-size: 0.875rem;
   font-family: Inconsolata, Monaco, Consolas, monospace;
 }
 .copyright p {
+  margin: 0;
   color: #aaa;
 }
 .copyright p a,
