@@ -8,6 +8,8 @@ author: "Kim, Dae Young"
 # Build settings
 kramdown:
   input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
 permalink: pretty
 
 # Third-party services
