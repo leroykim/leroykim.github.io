@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Probability Recap - Dae Young Kim</title>
+  <title>Random Variables - Dae Young Kim</title>
   <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
   <link rel="stylesheet" href="http://localhost:4000/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/probability/statistics/2025/02/27/probability-recap/">
+  <link rel="canonical" href="http://localhost:4000/probability/statistics/2025/03/02/random-variables/">
   <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
 </head>
 
@@ -19,10 +19,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Probability Recap - Dae Young Kim</title>
+  <title>Random Variables - Dae Young Kim</title>
   <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
   <link rel="stylesheet" href="http://localhost:4000/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/probability/statistics/2025/02/27/probability-recap/">
+  <link rel="canonical" href="http://localhost:4000/probability/statistics/2025/03/02/random-variables/">
   <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
 </head>
 
@@ -38,10 +38,10 @@
 <div class="post-page">
   <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <header class="post-header">
-      <title>Probability Recap - Dae Young Kim</title>
-      <h1 class="post-title" itemprop="name headline">Probability Recap</h1>
+      <title>Random Variables - Dae Young Kim</title>
+      <h1 class="post-title" itemprop="name headline">Random Variables</h1>
       <p class="post-meta">
-        <time datetime="2025-02-27T00:00:00-05:00" itemprop="datePublished">Feb 27, 2025</time>
+        <time datetime="2025-03-02T00:00:00-05:00" itemprop="datePublished">Mar 02, 2025</time>
          &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span
             itemprop="name">Dae-young Kim</span></span>
 
@@ -59,34 +59,7 @@
     </header>
 
     <div class="post-content" itemprop="articleBody">
-      <h4 id="conditional-probability">Conditional Probability</h4>
-<p>\(P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}\)</p>
-
-<ul>
-  <li>\(P(A)\): the prior</li>
-  <li>\(P(B \mid A)\): the likelihood</li>
-  <li>\(P(A \mid B)\): the posterior</li>
-  <li>\(P(A \mid B) = P(A)\): A and B are Independent.</li>
-  <li>\(P(A \cap B \mid C)=P(A \mid C)P(B \mid C)\): A and B are conditionally independent on the occurence of the event C.</li>
-  <li>Often has <code class="language-plaintext highlighter-rouge">given that</code></li>
-</ul>
-
-<h4 id="law-of-total-probability">Law of Total Probability</h4>
-<p>Formally, if \(B_1, B_2, \ldots , B_n\) form a partition of the sample space (i.e., they are mutually exclusive and exhaustive events), then for any event \(A\):</p>
-
-\[P(A)=\sum_iP(A \mid B_i)P(B_i)\]
-
-<p>It provides a convenient way to think about partitioning events. Often comes with <code class="language-plaintext highlighter-rouge">tree of outcomes</code></p>
-
-<h4 id="combination">Combination</h4>
-<p>\(\left( \begin{array}{c}
-n \\ k
-\end{array} \right) = \frac{n!}{k!(n-k)!}\)</p>
-
-<h4 id="permutation">Permutation</h4>
-<p>\(\frac{n!}{(n-k)!}\)</p>
-
-<h4 id="probability-mass-function-pmf">Probability Mass Function (PMF)</h4>
+      <h4 id="probability-mass-function-pmf">Probability Mass Function (PMF)</h4>
 <p>\(\sum_{x \in X}f_{X}(x)=1\)</p>
 
 <h4 id="probability-density-function-pdf">Probability Density Function (PDF)</h4>
@@ -101,6 +74,7 @@ n \\ k
   <li>\(F_{X}(x)\): representation of the CDF of the random variable <code class="language-plaintext highlighter-rouge">X</code>.</li>
   <li>\(P(X \leq x)\): the probability that <code class="language-plaintext highlighter-rouge">X</code> is less than or equal to <code class="language-plaintext highlighter-rouge">x</code>.</li>
   <li>The <code class="language-plaintext highlighter-rouge">CDF</code> accumulates probabilities as <code class="language-plaintext highlighter-rouge">x</code> increases.</li>
+  <li>Great for deriving properties of <code class="language-plaintext highlighter-rouge">random variables</code>.</li>
 </ul>
 
 <p>The CDF satisfies the following properties:</p>
@@ -113,6 +87,24 @@ n \\ k
 <p>Discrete variables’ <code class="language-plaintext highlighter-rouge">CDF</code>: \(F_{X}(x)=\sum_{k \leq x}p(k)\)</p>
 
 <p>Continuous variables’ <code class="language-plaintext highlighter-rouge">CDF</code>: \(F_{X}(x)=\int_{-\infty}^{x}p(y)dy\)</p>
+
+<h4 id="joint-probability-distribution">Joint Probability Distribution</h4>
+<p>A <code class="language-plaintext highlighter-rouge">joint probability distribution</code> describes the probability of two (or more) random variables occurring together.</p>
+
+<h5 id="discrete-varibales">Discrete Varibales</h5>
+<p>\(P(X=x, Y=y)\)</p>
+
+<h5 id="continuous-varibales">Continuous Varibales</h5>
+<p>\(f_{X,Y}(x,y) = \frac{\sigma^2}{\sigma x \sigma y}P(X \leq x, Y \leq y)\)</p>
+
+<h4 id="marginal-probability-distribution">Marginal Probability Distribution</h4>
+<p>A <code class="language-plaintext highlighter-rouge">marginal probability distribution</code> gives the probability of one variable <strong>regardless of the other</strong>. This <strong>marginalizes out</strong> \(Y\) by summing (discrete) or integrating (continuous) over all possible values of \(Y\).</p>
+
+<h5 id="discrete-varibales-1">Discrete Varibales</h5>
+<p>\(P(X=x) =  \sum_{y}P(X=x, Y=y)\)</p>
+
+<h5 id="continuous-varibales-1">Continuous Varibales</h5>
+<p>\(f_{X}(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)dy\)</p>
 
     </div>
 

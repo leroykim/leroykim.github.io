@@ -33,28 +33,3 @@ $$
 
 #### Permutation
 $$\frac{n!}{(n-k)!}$$
-
-
-#### Probability Mass Function (PMF)
-$$\sum_{x \in X}f_{X}(x)=1$$
-
-#### Probability Density Function (PDF)
-$$\int_{-\infty}^{\infty}f_{x}(x)dx = 1$$
-
-#### Cumulative Distribution Function (CDF)
-$$F_{X}(x) = p(X \leq x)$$
-
-![CDF Plot](/img/cdf_plot.svg)
-
-- $$F_{X}(x)$$: representation of the CDF of the random variable `X`.
-- $$P(X \leq x)$$: the probability that `X` is less than or equal to `x`.
-- The `CDF` accumulates probabilities as `x` increases.
-  
-The CDF satisfies the following properties:
-1. $$F_X(x)$$ is non-decreasing.
-2. $$\lim\limits_{x \to -\infty} F_X(x) = 0$$.
-3. $$\lim\limits_{x \to \infty} F_X(x) = 1$$.
-
-Discrete variables' `CDF`: $$F_{X}(x)=\sum_{k \leq x}p(k)$$
-
-Continuous variables' `CDF`: $$F_{X}(x)=\int_{-\infty}^{x}p(y)dy$$
