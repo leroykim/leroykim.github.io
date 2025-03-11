@@ -9,6 +9,8 @@ comment: true
 #### Probability Mass Function (PMF)
 $$\sum_{x \in X}f_{X}(x)=1$$
 
+---
+
 #### Probability Density Function (PDF)
 $$\int_{-\infty}^{\infty}f_{x}(x)dx = 1$$
 
@@ -85,4 +87,81 @@ $$f_{X \mid Y}(x \mid y)=\frac{f_{X,Y}(x,y)}{f_{Y}(y)}$$
 #### Binomial Distribution
 The **binomial distribution** models the number of **successes** in a fixed number of independent **Bernoulli trials**, where each trial has **only two possible outcomes: success or failure**.
 
+![Binomial Distribution For Different P Values (N=10)](/img/binomial_distribution.svg)
+
+The binomial probability mass function (PMF):
+
+$$P(X=k) = \left( \begin{array}{c}n \\ k \end{array}\right) p^k(1-p)^{n-k}$$
+
+Where:
+- $$k$$ = number of successes ($$0 \leq k \leq n $$)
+- $$n$$ = total number of trials
+- $$p$$ = probability of success per trial
+- $$\left( \begin{array}{c}n \\ k \end{array}\right) = \frac{n!}{k!(n-k)!}$$ = binomial coefficient, which counts the number of ways to choose $$k$$ successes from $$n$$ trials
+
+##### Mean
+$$E[X] = np$$
+##### Variance
+$$Var(X) = np(1-p)$$
+##### Standard Deviation
+$$\sigma X = \sqrt{np(1-p)}$$
+##### Skewness
+$$\frac{1-2p}{\sqrt{np(1-p)}}$$
+- If $$p=0.5$$, the distribution is symmetric. Otherwise, it is skewed.
+- If $$p < 0.5$$, the distribution skews left.
+- If $$p > 0.5$$, the distribution skews right. 
+- The mean and variance determine the spread.
+
+---
+
+#### Poisson Distribution
+
+The Poisson distribution models the number of events occurring in a fixed interval of time or space, assuming that:
+- Events occur independently of each other.
+- The average number of occurrences in a given interval is constant.
+
+It is commonly used to model rare events such as:
+- The number of earthquakes in a year.
+- The number of customers arriving at a store per hour.
+- The number of emails received per day.
+
+![Poisson Distribution For Different Lambda Values](/img/poisson_distribution.svg)
+
+If  $$X$$ follows a Poisson distribution with mean $$\lambda$$ (the expected number of occurrences in an interval), we write:
+
+$$X \sim Poisson(\lambda)$$
+
+The probability mass function (PMF) is:
+
+$$P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}, \; k = 0,1,2, \ldots$$
+
+Where:
+- $$k$$ = number of occurrences
+- $$\lambda$$ = expected number of occurrences in the interval
+- $$e$$ = Euler's number ($$\sim 2.718$$)
+
+The Poisson distribution is discrete, meaning $$k$$ can only take whole-number values.
+
+##### Mean
+$$E[X] = \lambda$$
+
+##### Variance
+$$Var(X) = \lambda$$
+
+##### Standard Deviation
+$$\sigma = \sqrt{\lambda}$$
+
+##### Skewness
+$$\frac{1}{\sqrt{\lambda}}$$
+
+##### Insights
+- The Poisson distribution models event occurrences in a fixed interval.
+- The mean and variance are both equal to $$\lambda$$
+- Smaller $$\lambda$$ values result in a distribution that is skewed right, while larger $$\lambda$$ values become more symmetric.
+  
+---
+
 #### Uniform Distribution
+The uniform distribution is a probability distribution where all outcomes are equally likely within a given range.
+
+![Uniform Distribution For Different Intervals](/img/uniform_distribution.svg)

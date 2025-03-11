@@ -62,6 +62,8 @@
       <h4 id="probability-mass-function-pmf">Probability Mass Function (PMF)</h4>
 <p>\(\sum_{x \in X}f_{X}(x)=1\)</p>
 
+<hr />
+
 <h4 id="probability-density-function-pdf">Probability Density Function (PDF)</h4>
 <p>\(\int_{-\infty}^{\infty}f_{x}(x)dx = 1\)</p>
 
@@ -144,7 +146,96 @@
 <h4 id="binomial-distribution">Binomial Distribution</h4>
 <p>The <strong>binomial distribution</strong> models the number of <strong>successes</strong> in a fixed number of independent <strong>Bernoulli trials</strong>, where each trial has <strong>only two possible outcomes: success or failure</strong>.</p>
 
+<p><img src="/img/binomial_distribution.svg" alt="Binomial Distribution For Different P Values (N=10)" /></p>
+
+<p>The binomial probability mass function (PMF):</p>
+
+\[P(X=k) = \left( \begin{array}{c}n \\ k \end{array}\right) p^k(1-p)^{n-k}\]
+
+<p>Where:</p>
+<ul>
+  <li>\(k\) = number of successes (\(0 \leq k \leq n\))</li>
+  <li>\(n\) = total number of trials</li>
+  <li>\(p\) = probability of success per trial</li>
+  <li>\(\left( \begin{array}{c}n \\ k \end{array}\right) = \frac{n!}{k!(n-k)!}\) = binomial coefficient, which counts the number of ways to choose \(k\) successes from \(n\) trials</li>
+</ul>
+
+<h5 id="mean">Mean</h5>
+<p>\(E[X] = np\)</p>
+<h5 id="variance">Variance</h5>
+<p>\(Var(X) = np(1-p)\)</p>
+<h5 id="standard-deviation">Standard Deviation</h5>
+<p>\(\sigma X = \sqrt{np(1-p)}\)</p>
+<h5 id="skewness">Skewness</h5>
+<p>\(\frac{1-2p}{\sqrt{np(1-p)}}\)</p>
+<ul>
+  <li>If \(p=0.5\), the distribution is symmetric. Otherwise, it is skewed.</li>
+  <li>If \(p &lt; 0.5\), the distribution skews left.</li>
+  <li>If \(p &gt; 0.5\), the distribution skews right.</li>
+  <li>The mean and variance determine the spread.</li>
+</ul>
+
+<hr />
+
+<h4 id="poisson-distribution">Poisson Distribution</h4>
+
+<p>The Poisson distribution models the number of events occurring in a fixed interval of time or space, assuming that:</p>
+<ul>
+  <li>Events occur independently of each other.</li>
+  <li>The average number of occurrences in a given interval is constant.</li>
+</ul>
+
+<p>It is commonly used to model rare events such as:</p>
+<ul>
+  <li>The number of earthquakes in a year.</li>
+  <li>The number of customers arriving at a store per hour.</li>
+  <li>The number of emails received per day.</li>
+</ul>
+
+<p><img src="/img/poisson_distribution.svg" alt="Poisson Distribution For Different Lambda Values" /></p>
+
+<p>If  \(X\) follows a Poisson distribution with mean \(\lambda\) (the expected number of occurrences in an interval), we write:</p>
+
+\[X \sim Poisson(\lambda)\]
+
+<p>The probability mass function (PMF) is:</p>
+
+\[P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}, \; k = 0,1,2, \ldots\]
+
+<p>Where:</p>
+<ul>
+  <li>\(k\) = number of occurrences</li>
+  <li>\(\lambda\) = expected number of occurrences in the interval</li>
+  <li>\(e\) = Euler’s number (\(\sim 2.718\))</li>
+</ul>
+
+<p>The Poisson distribution is discrete, meaning \(k\) can only take whole-number values.</p>
+
+<h5 id="mean-1">Mean</h5>
+<p>\(E[X] = \lambda\)</p>
+
+<h5 id="variance-1">Variance</h5>
+<p>\(Var(X) = \lambda\)</p>
+
+<h5 id="standard-deviation-1">Standard Deviation</h5>
+<p>\(\sigma = \sqrt{\lambda}\)</p>
+
+<h5 id="skewness-1">Skewness</h5>
+<p>\(\frac{1}{\sqrt{\lambda}}\)</p>
+
+<h5 id="insights">Insights</h5>
+<ul>
+  <li>The Poisson distribution models event occurrences in a fixed interval.</li>
+  <li>The mean and variance are both equal to \(\lambda\)</li>
+  <li>Smaller \(\lambda\) values result in a distribution that is skewed right, while larger \(\lambda\) values become more symmetric.</li>
+</ul>
+
+<hr />
+
 <h4 id="uniform-distribution">Uniform Distribution</h4>
+<p>The uniform distribution is a probability distribution where all outcomes are equally likely within a given range.</p>
+
+<p><img src="/img/uniform_distribution.svg" alt="Uniform Distribution For Different Intervals" /></p>
 
     </div>
 

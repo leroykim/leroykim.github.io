@@ -5,13 +5,13 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Mar 2025 10:26:12 -0400</pubDate>
-    <lastBuildDate>Tue, 11 Mar 2025 10:26:12 -0400</lastBuildDate>
+    <pubDate>Tue, 11 Mar 2025 13:29:50 -0400</pubDate>
+    <lastBuildDate>Tue, 11 Mar 2025 13:29:50 -0400</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
         <title>Creating and Retrieving a FlyteDirectory URL in Flyte</title>
-        <description>&lt;p&gt;Flyte makes it easy to handle large datasets by treating directories as structured outputs using FlyteDirectory. This allows seamless management of files without manually handling storage paths.&lt;/p&gt;
+        <description>&lt;p&gt;Flyte makes it easy to handle large datasets by treating directories as structured outputs using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FlyteDirectory&lt;/code&gt;. This allows seamless management of files without manually handling storage paths.&lt;/p&gt;
 
 &lt;p&gt;In this post, we’ll demonstrate the simplest way to create a FlyteDirectory and retrieve its URL.&lt;/p&gt;
 
@@ -83,6 +83,8 @@
         <title>Random Variables</title>
         <description>&lt;h4 id=&quot;probability-mass-function-pmf&quot;&gt;Probability Mass Function (PMF)&lt;/h4&gt;
 &lt;p&gt;\(\sum_{x \in X}f_{X}(x)=1\)&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h4 id=&quot;probability-density-function-pdf&quot;&gt;Probability Density Function (PDF)&lt;/h4&gt;
 &lt;p&gt;\(\int_{-\infty}^{\infty}f_{x}(x)dx = 1\)&lt;/p&gt;
@@ -166,7 +168,96 @@
 &lt;h4 id=&quot;binomial-distribution&quot;&gt;Binomial Distribution&lt;/h4&gt;
 &lt;p&gt;The &lt;strong&gt;binomial distribution&lt;/strong&gt; models the number of &lt;strong&gt;successes&lt;/strong&gt; in a fixed number of independent &lt;strong&gt;Bernoulli trials&lt;/strong&gt;, where each trial has &lt;strong&gt;only two possible outcomes: success or failure&lt;/strong&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/img/binomial_distribution.svg&quot; alt=&quot;Binomial Distribution For Different P Values (N=10)&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The binomial probability mass function (PMF):&lt;/p&gt;
+
+\[P(X=k) = \left( \begin{array}{c}n \\ k \end{array}\right) p^k(1-p)^{n-k}\]
+
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(k\) = number of successes (\(0 \leq k \leq n\))&lt;/li&gt;
+  &lt;li&gt;\(n\) = total number of trials&lt;/li&gt;
+  &lt;li&gt;\(p\) = probability of success per trial&lt;/li&gt;
+  &lt;li&gt;\(\left( \begin{array}{c}n \\ k \end{array}\right) = \frac{n!}{k!(n-k)!}\) = binomial coefficient, which counts the number of ways to choose \(k\) successes from \(n\) trials&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;mean&quot;&gt;Mean&lt;/h5&gt;
+&lt;p&gt;\(E[X] = np\)&lt;/p&gt;
+&lt;h5 id=&quot;variance&quot;&gt;Variance&lt;/h5&gt;
+&lt;p&gt;\(Var(X) = np(1-p)\)&lt;/p&gt;
+&lt;h5 id=&quot;standard-deviation&quot;&gt;Standard Deviation&lt;/h5&gt;
+&lt;p&gt;\(\sigma X = \sqrt{np(1-p)}\)&lt;/p&gt;
+&lt;h5 id=&quot;skewness&quot;&gt;Skewness&lt;/h5&gt;
+&lt;p&gt;\(\frac{1-2p}{\sqrt{np(1-p)}}\)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If \(p=0.5\), the distribution is symmetric. Otherwise, it is skewed.&lt;/li&gt;
+  &lt;li&gt;If \(p &amp;lt; 0.5\), the distribution skews left.&lt;/li&gt;
+  &lt;li&gt;If \(p &amp;gt; 0.5\), the distribution skews right.&lt;/li&gt;
+  &lt;li&gt;The mean and variance determine the spread.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;poisson-distribution&quot;&gt;Poisson Distribution&lt;/h4&gt;
+
+&lt;p&gt;The Poisson distribution models the number of events occurring in a fixed interval of time or space, assuming that:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Events occur independently of each other.&lt;/li&gt;
+  &lt;li&gt;The average number of occurrences in a given interval is constant.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is commonly used to model rare events such as:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The number of earthquakes in a year.&lt;/li&gt;
+  &lt;li&gt;The number of customers arriving at a store per hour.&lt;/li&gt;
+  &lt;li&gt;The number of emails received per day.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/poisson_distribution.svg&quot; alt=&quot;Poisson Distribution For Different Lambda Values&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If  \(X\) follows a Poisson distribution with mean \(\lambda\) (the expected number of occurrences in an interval), we write:&lt;/p&gt;
+
+\[X \sim Poisson(\lambda)\]
+
+&lt;p&gt;The probability mass function (PMF) is:&lt;/p&gt;
+
+\[P(X=k) = \frac{\lambda^k e^{-\lambda}}{k!}, \; k = 0,1,2, \ldots\]
+
+&lt;p&gt;Where:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(k\) = number of occurrences&lt;/li&gt;
+  &lt;li&gt;\(\lambda\) = expected number of occurrences in the interval&lt;/li&gt;
+  &lt;li&gt;\(e\) = Euler’s number (\(\sim 2.718\))&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Poisson distribution is discrete, meaning \(k\) can only take whole-number values.&lt;/p&gt;
+
+&lt;h5 id=&quot;mean-1&quot;&gt;Mean&lt;/h5&gt;
+&lt;p&gt;\(E[X] = \lambda\)&lt;/p&gt;
+
+&lt;h5 id=&quot;variance-1&quot;&gt;Variance&lt;/h5&gt;
+&lt;p&gt;\(Var(X) = \lambda\)&lt;/p&gt;
+
+&lt;h5 id=&quot;standard-deviation-1&quot;&gt;Standard Deviation&lt;/h5&gt;
+&lt;p&gt;\(\sigma = \sqrt{\lambda}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;skewness-1&quot;&gt;Skewness&lt;/h5&gt;
+&lt;p&gt;\(\frac{1}{\sqrt{\lambda}}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;insights&quot;&gt;Insights&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;The Poisson distribution models event occurrences in a fixed interval.&lt;/li&gt;
+  &lt;li&gt;The mean and variance are both equal to \(\lambda\)&lt;/li&gt;
+  &lt;li&gt;Smaller \(\lambda\) values result in a distribution that is skewed right, while larger \(\lambda\) values become more symmetric.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
 &lt;h4 id=&quot;uniform-distribution&quot;&gt;Uniform Distribution&lt;/h4&gt;
+&lt;p&gt;The uniform distribution is a probability distribution where all outcomes are equally likely within a given range.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/uniform_distribution.svg&quot; alt=&quot;Uniform Distribution For Different Intervals&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/probability/statistics/2025/03/02/random-variables/</link>
