@@ -5,16 +5,14 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Mar 2025 06:53:07 -0400</pubDate>
-    <lastBuildDate>Tue, 11 Mar 2025 06:53:07 -0400</lastBuildDate>
+    <pubDate>Tue, 11 Mar 2025 07:40:14 -0400</pubDate>
+    <lastBuildDate>Tue, 11 Mar 2025 07:40:14 -0400</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
         <title>Probability Recap</title>
-        <description>&lt;h2 id=&quot;basics&quot;&gt;Basics&lt;/h2&gt;
-&lt;h3 id=&quot;conditional-probability&quot;&gt;Conditional Probability&lt;/h3&gt;
-
-\[P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}\]
+        <description>&lt;h4 id=&quot;conditional-probability&quot;&gt;Conditional Probability&lt;/h4&gt;
+&lt;p&gt;\(P(A \mid B)=\frac{P(B \mid A)P(A)}{P(B)}\)&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;\(P(A)\): the prior&lt;/li&gt;
@@ -25,26 +23,48 @@
   &lt;li&gt;Often has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;given that&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;law-of-total-probability&quot;&gt;Law of Total Probability&lt;/h3&gt;
+&lt;h4 id=&quot;law-of-total-probability&quot;&gt;Law of Total Probability&lt;/h4&gt;
 &lt;p&gt;Formally, if \(B_1, B_2, \ldots , B_n\) form a partition of the sample space (i.e., they are mutually exclusive and exhaustive events), then for any event \(A\):&lt;/p&gt;
 
 \[P(A)=\sum_iP(A \mid B_i)P(B_i)\]
 
 &lt;p&gt;It provides a convenient way to think about partitioning events. Often comes with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tree of outcomes&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;combination&quot;&gt;Combination&lt;/h3&gt;
-
-\[\left( \begin{array}{c}
+&lt;h4 id=&quot;combination&quot;&gt;Combination&lt;/h4&gt;
+&lt;p&gt;\(\left( \begin{array}{c}
 n \\ k
-\end{array} \right) = \frac{n!}{k!(n-k)!}\]
+\end{array} \right) = \frac{n!}{k!(n-k)!}\)&lt;/p&gt;
 
-&lt;h3 id=&quot;permutation&quot;&gt;Permutation&lt;/h3&gt;
+&lt;h4 id=&quot;permutation&quot;&gt;Permutation&lt;/h4&gt;
+&lt;p&gt;\(\frac{n!}{(n-k)!}\)&lt;/p&gt;
 
-\[\frac{n!}{(n-k)!}\]
+&lt;h4 id=&quot;probability-mass-function-pmf&quot;&gt;Probability Mass Function (PMF)&lt;/h4&gt;
+&lt;p&gt;\(\sum_{x \in X}f_{X}(x)=1\)&lt;/p&gt;
 
-&lt;!-- ### Random Variables
+&lt;h4 id=&quot;probability-density-function-pdf&quot;&gt;Probability Density Function (PDF)&lt;/h4&gt;
+&lt;p&gt;\(\int_{-\infty}^{\infty}f_{x}(x)dx = 1\)&lt;/p&gt;
 
-###  --&gt;
+&lt;h4 id=&quot;cumulative-distribution-function-cdf&quot;&gt;Cumulative Distribution Function (CDF)&lt;/h4&gt;
+&lt;p&gt;\(F_{X}(x) = p(X \leq x)\)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/cdf_plot.svg&quot; alt=&quot;CDF Plot&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;\(F_{X}(x)\): representation of the CDF of the random variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;\(P(X \leq x)\): the probability that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; is less than or equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CDF&lt;/code&gt; accumulates probabilities as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x&lt;/code&gt; increases.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The CDF satisfies the following properties:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;\(F_X(x)\) is non-decreasing.&lt;/li&gt;
+  &lt;li&gt;\(\lim\limits_{x \to -\infty} F_X(x) = 0\).&lt;/li&gt;
+  &lt;li&gt;\(\lim\limits_{x \to \infty} F_X(x) = 1\).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Discrete variables’ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CDF&lt;/code&gt;: \(F_{X}(x)=\sum_{k \leq x}p(k)\)&lt;/p&gt;
+
+&lt;p&gt;Continuous variables’ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CDF&lt;/code&gt;: \(F_{X}(x)=\int_{-\infty}^{x}p(y)dy\)&lt;/p&gt;
 </description>
         <pubDate>Thu, 27 Feb 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/probability/statistics/2025/02/27/probability-recap/</link>
