@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/github%20pages/ruby/2025/01/10/Jekyll-Installation/</loc>
+<lastmod>2025-01-10T00:00:00-05:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates-copy/</loc>
 <lastmod>2025-01-21T00:00:00-05:00</lastmod>
 </url>
@@ -39,18 +43,6 @@
 <url>
 <loc>http://localhost:4000/flyte/workflow%20orchestration/2025/03/10/flytedirectory-url/</loc>
 <lastmod>2025-03-10T00:00:00-04:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/backup/2017-01-15-about-this-jekyll-theme/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/backup/2017-01-15-example-content/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/backup/2017-01-15-history-of-lorem-ipsum/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/backup/2017-01-15-whats-jekyll/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>
