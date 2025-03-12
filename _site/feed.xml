@@ -5,9 +5,184 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Mar 2025 22:07:33 -0400</pubDate>
-    <lastBuildDate>Tue, 11 Mar 2025 22:07:33 -0400</lastBuildDate>
-    <generator>Jekyll v4.4.1</generator>
+    <pubDate>Wed, 12 Mar 2025 09:32:01 -0400</pubDate>
+    <lastBuildDate>Wed, 12 Mar 2025 09:32:01 -0400</lastBuildDate>
+    <generator>Jekyll v4.3.4</generator>
+    
+      <item>
+        <title>Ubuntu Flyte Setup Script</title>
+        <description>&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Script: env_setup_ubuntu.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   This script sets up a Python virtual environment, installs required Python&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   packages using Poetry, installs Docker with its dependencies, and installs&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   flytectl.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# How to Use:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   1. Save this script to a file (e.g., env_setup_ubuntu.sh).&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   2. Make the script executable:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#          chmod +x env_setup_ubuntu.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   3. Run the script:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#          ./env_setup_ubuntu.sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Note:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   The script will prompt you to reboot your system at the end if Docker group&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   changes have been applied. Answer &apos;y&apos; to reboot or &apos;n&apos; to skip.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Function: setup_virtualenv&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   Sets up the Python virtual environment by checking the Python version,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   updating apt packages, installing python3-venv, creating a virtual&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   environment, activating it, upgrading pip, and installing Poetry.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+setup_virtualenv&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Checking Python version...&quot;&lt;/span&gt;
+    python3 &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Updating apt packages...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Installing python3-venv...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; python3-venv
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Creating virtual environment...&quot;&lt;/span&gt;
+    python3 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv .venv
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Activating virtual environment...&quot;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# shellcheck source=/dev/null&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .venv/bin/activate
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Upgrading pip and installing Poetry...&quot;&lt;/span&gt;
+    pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+    pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;poetry
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Function: install_packages&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   Installs Python packages using Poetry based on the project&apos;s configuration.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+install_packages&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Installing project packages with Poetry...&quot;&lt;/span&gt;
+    poetry &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Function: install_docker&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   Installs Docker and configures its repository. This includes installing&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   prerequisites, adding Docker&apos;s official GPG key and repository, installing&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   Docker and related tools, and adding the current user to the Docker group.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+install_docker&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Updating apt packages for Docker installation...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Installing prerequisites for Docker...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; ca-certificates curl
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Creating keyring directory for Docker...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 0755 &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; /etc/apt/keyrings
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Adding Docker&apos;s official GPG key...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://download.docker.com/linux/ubuntu/gpg &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /etc/apt/keyrings/docker.asc
+    &lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;a+r /etc/apt/keyrings/docker.asc
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Adding Docker repository to APT sources...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; /etc/os-release
+    &lt;span class=&quot;nv&quot;&gt;UBUNTU_CODENAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;UBUNTU_CODENAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$VERSION_CODENAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;deb [arch=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;--print-architecture&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;UBUNTU_CODENAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; stable&quot;&lt;/span&gt; | &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;sudo tee&lt;/span&gt; /etc/apt/sources.list.d/docker.list &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Updating apt packages...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Installing Docker packages...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Listing Docker socket permissions...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; /var/run/docker.sock
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Adding current user to the Docker group...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;usermod &lt;span class=&quot;nt&quot;&gt;-aG&lt;/span&gt; docker &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;whoami&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;NOTE: For the group changes to take effect, please log out and log in again or reboot your system.&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Function: install_flytectl&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   Installs flytectl along with its dependency jq.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+install_flytectl&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Installing jq...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; jq
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Installing flytectl...&quot;&lt;/span&gt;
+    curl &lt;span class=&quot;nt&quot;&gt;-sL&lt;/span&gt; https://ctl.flyte.org/install | &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; /usr/local/bin
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Function: main&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   Orchestrates the installation steps by sequentially setting up the virtual&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   environment, installing Python packages, Docker, and flytectl.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#------------------------------------------------------------------------------&lt;/span&gt;
+main&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=== Starting Virtual Environment Setup ===&quot;&lt;/span&gt;
+    setup_virtualenv
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=== Installing Python Packages ===&quot;&lt;/span&gt;
+    install_packages
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=== Installing Docker ===&quot;&lt;/span&gt;
+    install_docker
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=== Installing flytectl ===&quot;&lt;/span&gt;
+    install_flytectl
+
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;All installations have been completed successfully.&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Reboot is recommended for Docker group changes to take effect. Reboot now? (y/N): &quot;&lt;/span&gt; answer
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~ ^[Yy]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Rebooting system...&quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;reboot
+    &lt;span class=&quot;k&quot;&gt;else
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Please remember to reboot your system later.&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Run the main function&lt;/span&gt;
+main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 12 Mar 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/flyte/workflow%20orchestration/2025/03/12/ubuntu-flyte-setup-script/</link>
+        <guid isPermaLink="true">http://localhost:4000/flyte/workflow%20orchestration/2025/03/12/ubuntu-flyte-setup-script/</guid>
+        
+        <category>Flyte</category>
+        
+        <category>Python</category>
+        
+        <category>Ubuntu</category>
+        
+        
+        <category>Flyte</category>
+        
+        <category>Workflow Orchestration</category>
+        
+      </item>
     
       <item>
         <title>Creating and Retrieving a FlyteDirectory URL in Flyte</title>
@@ -441,7 +616,7 @@ n \\ k
       </item>
     
       <item>
-        <title>Setting Up Flyte (A Step-by-Step Guide)</title>
+        <title>Setting Up Flyte (Ubuntu)</title>
         <description>&lt;p&gt;Flyte is a powerful workflow automation platform designed for machine learning and data engineering tasks. This guide will walk you through the setup process, including configuring a virtual environment, installing dependencies, setting up Docker, and running Flyte in a sandbox environment.&lt;/p&gt;
 
 &lt;h2 id=&quot;1-setting-up-a-virtual-environment&quot;&gt;1. Setting Up a Virtual Environment&lt;/h2&gt;
@@ -1007,63 +1182,6 @@ Python 3.11.11
         <category>Python</category>
         
         <category>macOS</category>
-        
-      </item>
-    
-      <item>
-        <title>Slurm commands and templates</title>
-        <description>&lt;h2 id=&quot;slurm-job-status&quot;&gt;Slurm Job Status&lt;/h2&gt;
-&lt;h3 id=&quot;checking-my-job-status&quot;&gt;Checking my job status&lt;/h3&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;squeue &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;user name&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;canceling-a-job&quot;&gt;Canceling a job&lt;/h3&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scancel &amp;lt;job &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;graphic-card-usage-check&quot;&gt;Graphic Card Usage Check&lt;/h2&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;srun &lt;span class=&quot;nt&quot;&gt;--jobid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;job_id&amp;gt; nvidia-smi
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;YOU MUST CREATE SLURM LOG DIRECTORY IF YOU DESIGNATE SPECIFIC ONE!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;sbatch-template&quot;&gt;Sbatch template&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-shell-script&quot;&gt;#!/bin/bash
-#SBATCH --job-name &amp;lt;job name&amp;gt;       # Job name
-#SBATCH --ntasks 2                  # Number of tasks
-#SBATCH --time 3-00                 # Runtime
-#SBATCH --mem-per-gpu=30G           # Reserve 30 GB memory per GPU
-#SBATCH --partition gpu             # Partition to submit
-#SBATCH --output job-log-%j.txt     # Standard out will be written to this file
-#SBATCH --error job-log-%j.txt      # Standard err will be written to this file
-#SBATCH --mail-user &amp;lt;email&amp;gt;         # This is the email you wish to be notified at
-#SBATCH --mail-type ALL             # Alert types to get via email
-#SBATCH --nodelist=&amp;lt;nodelist&amp;gt;       # Node list to submit the job
-#SBATCH --gres=gpu:2                # Number of gpu to reserve
-#SBATCH --requeue                   # Requeue when the job is cancelled
-
-spack load &amp;lt;dependency name&amp;gt;
-module load &amp;lt;dependency name&amp;gt;
-
-# ACTIVATE ANACONDA IF NEEDED
-eval &quot;$(conda shell.bash hook)&quot;
-conda activate &amp;lt;conda environment name&amp;gt;
-
-# RUN TRAINING
-deepspeed your_code.py
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-        <pubDate>Tue, 21 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates-copy/</link>
-        <guid isPermaLink="true">http://localhost:4000/large%20language%20models%20(llms)/2025/01/21/slurm-commands-and-templates-copy/</guid>
-        
-        <category>HPC</category>
-        
-        <category>Slurm</category>
-        
-        
-        <category>Large Language Models (LLMs)</category>
         
       </item>
     

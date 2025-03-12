@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ubuntu Flyte Setup Script - Dae Young Kim</title>
+  <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/flyte/workflow%20orchestration/2025/03/12/ubuntu-flyte-setup-script/">
+  <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
+</head>
+
+
+<body>
+  <div class="page-content">
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ubuntu Flyte Setup Script - Dae Young Kim</title>
+  <meta name="description" content="AI Research Scientist | Expertise in LLMs & Knowledge Graphs">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/flyte/workflow%20orchestration/2025/03/12/ubuntu-flyte-setup-script/">
+  <link rel="alternate" type="application/rss+xml" title="Dae Young Kim" href="http://localhost:4000/feed.xml">
+</head>
+
+<section class="site-header">
+  <h1 class="smallcap"><a class="site-title" href="http://localhost:4000/">Dae Young Kim</a></h1>
+  <p class="site-nav">
+    <a href="http://localhost:4000/about">About</a> /
+    <a href="http://localhost:4000/categories">Categories</a> /
+    <a href="http://localhost:4000/tagged">Tagged</a>
+    <!-- <a href="http://localhost:4000/feed.xml">RSS</a> -->
+</p>
+</section>
+<div class="post-page">
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <title>Ubuntu Flyte Setup Script - Dae Young Kim</title>
+      <h1 class="post-title" itemprop="name headline">Ubuntu Flyte Setup Script</h1>
+      <p class="post-meta">
+        <time datetime="2025-03-12T00:00:00-04:00" itemprop="datePublished">Mar 12, 2025</time>
+         &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span
+            itemprop="name">Dae-young Kim</span></span>
+
+        
+        
+        
+        
+        &middot; <span class="tags" itemprop="tags">
+        
+        
+        <a href="http://localhost:4000/tagged#flyte">#Flyte</a>
+        <a href="http://localhost:4000/tagged#python">#Python</a>
+        <a href="http://localhost:4000/tagged#ubuntu">#Ubuntu</a>
+        </span>
+        
+      </p>
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">set</span> <span class="nt">-e</span>
+
+<span class="c">#------------------------------------------------------------------------------</span>
+<span class="c"># Script: env_setup_ubuntu.sh</span>
+<span class="c">#</span>
+<span class="c"># Description:</span>
+<span class="c">#   This script sets up a Python virtual environment, installs required Python</span>
+<span class="c">#   packages using Poetry, installs Docker with its dependencies, and installs</span>
+<span class="c">#   flytectl.</span>
+<span class="c">#</span>
+<span class="c"># How to Use:</span>
+<span class="c">#   1. Save this script to a file (e.g., env_setup_ubuntu.sh).</span>
+<span class="c">#   2. Make the script executable:</span>
+<span class="c">#          chmod +x env_setup_ubuntu.sh</span>
+<span class="c">#   3. Run the script:</span>
+<span class="c">#          ./env_setup_ubuntu.sh</span>
+<span class="c">#</span>
+<span class="c"># Note:</span>
+<span class="c">#   The script will prompt you to reboot your system at the end if Docker group</span>
+<span class="c">#   changes have been applied. Answer 'y' to reboot or 'n' to skip.</span>
+<span class="c">#</span>
+<span class="c">#------------------------------------------------------------------------------</span>
+
+<span class="c">#------------------------------------------------------------------------------</span>
+<span class="c"># Function: setup_virtualenv</span>
+<span class="c">#</span>
+<span class="c"># Description:</span>
+<span class="c">#   Sets up the Python virtual environment by checking the Python version,</span>
+<span class="c">#   updating apt packages, installing python3-venv, creating a virtual</span>
+<span class="c">#   environment, activating it, upgrading pip, and installing Poetry.</span>
+<span class="c">#------------------------------------------------------------------------------</span>
+setup_virtualenv<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Checking Python version..."</span>
+    python3 <span class="nt">--version</span>
+
+    <span class="nb">echo</span> <span class="s2">"Updating apt packages..."</span>
+    <span class="nb">sudo </span>apt update
+
+    <span class="nb">echo</span> <span class="s2">"Installing python3-venv..."</span>
+    <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> python3-venv
+
+    <span class="nb">echo</span> <span class="s2">"Creating virtual environment..."</span>
+    python3 <span class="nt">-m</span> venv .venv
+
+    <span class="nb">echo</span> <span class="s2">"Activating virtual environment..."</span>
+    <span class="c"># shellcheck source=/dev/null</span>
+    <span class="nb">source</span> .venv/bin/activate
+
+    <span class="nb">echo</span> <span class="s2">"Upgrading pip and installing Poetry..."</span>
+    pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip
+    pip <span class="nb">install </span>poetry
+<span class="o">}</span>
+
+<span class="c">#------------------------------------------------------------------------------</span>
+<span class="c"># Function: install_packages</span>
+<span class="c">#</span>
+<span class="c"># Description:</span>
+<span class="c">#   Installs Python packages using Poetry based on the project's configuration.</span>
+<span class="c">#------------------------------------------------------------------------------</span>
+install_packages<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Installing project packages with Poetry..."</span>
+    poetry <span class="nb">install</span>
+<span class="o">}</span>
+
+<span class="c">#------------------------------------------------------------------------------</span>
+<span class="c"># Function: install_docker</span>
+<span class="c">#</span>
+<span class="c"># Description:</span>
+<span class="c">#   Installs Docker and configures its repository. This includes installing</span>
+<span class="c">#   prerequisites, adding Docker's official GPG key and repository, installing</span>
+<span class="c">#   Docker and related tools, and adding the current user to the Docker group.</span>
+<span class="c">#------------------------------------------------------------------------------</span>
+install_docker<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Updating apt packages for Docker installation..."</span>
+    <span class="nb">sudo </span>apt-get update
+
+    <span class="nb">echo</span> <span class="s2">"Installing prerequisites for Docker..."</span>
+    <span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> ca-certificates curl
+
+    <span class="nb">echo</span> <span class="s2">"Creating keyring directory for Docker..."</span>
+    <span class="nb">sudo install</span> <span class="nt">-m</span> 0755 <span class="nt">-d</span> /etc/apt/keyrings
+
+    <span class="nb">echo</span> <span class="s2">"Adding Docker's official GPG key..."</span>
+    <span class="nb">sudo </span>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="se">\</span>
+        <span class="nt">-o</span> /etc/apt/keyrings/docker.asc
+    <span class="nb">sudo chmod </span>a+r /etc/apt/keyrings/docker.asc
+
+    <span class="nb">echo</span> <span class="s2">"Adding Docker repository to APT sources..."</span>
+    <span class="nb">.</span> /etc/os-release
+    <span class="nv">UBUNTU_CODENAME</span><span class="o">=</span><span class="k">${</span><span class="nv">UBUNTU_CODENAME</span><span class="k">:-</span><span class="nv">$VERSION_CODENAME</span><span class="k">}</span>
+    <span class="nb">echo</span> <span class="s2">"deb [arch=</span><span class="si">$(</span>dpkg <span class="nt">--print-architecture</span><span class="si">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu </span><span class="k">${</span><span class="nv">UBUNTU_CODENAME</span><span class="k">}</span><span class="s2"> stable"</span> | <span class="se">\</span>
+        <span class="nb">sudo tee</span> /etc/apt/sources.list.d/docker.list <span class="o">&gt;</span> /dev/null
+
+    <span class="nb">echo</span> <span class="s2">"Updating apt packages..."</span>
+    <span class="nb">sudo </span>apt-get update
+
+    <span class="nb">echo</span> <span class="s2">"Installing Docker packages..."</span>
+    <span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    <span class="nb">echo</span> <span class="s2">"Listing Docker socket permissions..."</span>
+    <span class="nb">ls</span> <span class="nt">-l</span> /var/run/docker.sock
+
+    <span class="nb">echo</span> <span class="s2">"Adding current user to the Docker group..."</span>
+    <span class="nb">sudo </span>usermod <span class="nt">-aG</span> docker <span class="s2">"</span><span class="si">$(</span><span class="nb">whoami</span><span class="si">)</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"NOTE: For the group changes to take effect, please log out and log in again or reboot your system."</span>
+<span class="o">}</span>
+
+<span class="c">#------------------------------------------------------------------------------</span>
+<span class="c"># Function: install_flytectl</span>
+<span class="c">#</span>
+<span class="c"># Description:</span>
+<span class="c">#   Installs flytectl along with its dependency jq.</span>
+<span class="c">#------------------------------------------------------------------------------</span>
+install_flytectl<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Installing jq..."</span>
+    <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> jq
+
+    <span class="nb">echo</span> <span class="s2">"Installing flytectl..."</span>
+    curl <span class="nt">-sL</span> https://ctl.flyte.org/install | <span class="nb">sudo </span>bash <span class="nt">-s</span> <span class="nt">--</span> <span class="nt">-b</span> /usr/local/bin
+<span class="o">}</span>
+
+<span class="c">#------------------------------------------------------------------------------</span>
+<span class="c"># Function: main</span>
+<span class="c">#</span>
+<span class="c"># Description:</span>
+<span class="c">#   Orchestrates the installation steps by sequentially setting up the virtual</span>
+<span class="c">#   environment, installing Python packages, Docker, and flytectl.</span>
+<span class="c">#------------------------------------------------------------------------------</span>
+main<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Starting Virtual Environment Setup ==="</span>
+    setup_virtualenv
+
+    <span class="nb">echo</span> <span class="s2">"=== Installing Python Packages ==="</span>
+    install_packages
+
+    <span class="nb">echo</span> <span class="s2">"=== Installing Docker ==="</span>
+    install_docker
+
+    <span class="nb">echo</span> <span class="s2">"=== Installing flytectl ==="</span>
+    install_flytectl
+
+    <span class="nb">echo</span> <span class="s2">"All installations have been completed successfully."</span>
+    <span class="nb">read</span> <span class="nt">-r</span> <span class="nt">-p</span> <span class="s2">"Reboot is recommended for Docker group changes to take effect. Reboot now? (y/N): "</span> answer
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$answer</span> <span class="o">=</span>~ ^[Yy]<span class="nv">$ </span><span class="o">]]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Rebooting system..."</span>
+        <span class="nb">sudo </span>reboot
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Please remember to reboot your system later."</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># Run the main function</span>
+main
+</code></pre></div></div>
+
+    </div>
+
+    <hr>
+
+    
+    
+
+    
+  </article>
+</div>
+    <div class="copyright">
+      <p>&copy; 2025 <a href="http://localhost:4000/"><strong>Dae Young Kim</strong></a> ― Powered by <a href="https://jekyllrb.com/">Jekyll</a> and <a
+          href="https://github.com/heiswayi/textlog">Textlog theme</a></p>
+    </div>
+  </div>
+  
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>
