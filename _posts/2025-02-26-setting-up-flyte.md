@@ -95,21 +95,9 @@ sudo apt install jq
 curl -sL https://ctl.flyte.org/install | sudo bash -s -- -b /usr/local/bin
 ```
 
-## 4. Configuring Flyte Sandbox
-The Flyte Sandbox provides an easy way to run Flyte locally for development and testing.
-### Create Flyte Configuration File
-Create the file `~/.flyte/config-sandbox.yaml` and add the following content:
-```yaml
-flyte:
-  admin:
-    endpoint: localhost:30080
-    authType: Pkce
-    insecure: true
-```
 ### Start Flyte Sandbox
 ```bash
-export FLYTECTL_CONFIG=~/.flyte/config-sandbox.yaml
-sudo flytectl demo start
+flytectl demo start
 ```
 After running this command, you should see output indicating that Flyte is successfully running. The Flyte UI will be available at: http://localhost:30080/console
 Additional services like Minio (for storage) will also be available: http://localhost:30080/minio
@@ -147,6 +135,7 @@ Ensure you have a project definition file (e.g., `workflow_codes/project_definit
 
 ### Create Project in Flyte
 ```bash
+export FLYTECTL_CONFIG=~/.flyte/config-sandbox.yaml
 flytectl create project --file ./workflow_codes/project_definition.yaml
 ```
 

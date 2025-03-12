@@ -5,8 +5,8 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 12 Mar 2025 09:32:01 -0400</pubDate>
-    <lastBuildDate>Wed, 12 Mar 2025 09:32:01 -0400</lastBuildDate>
+    <pubDate>Wed, 12 Mar 2025 11:00:58 -0400</pubDate>
+    <lastBuildDate>Wed, 12 Mar 2025 11:00:58 -0400</lastBuildDate>
     <generator>Jekyll v4.3.4</generator>
     
       <item>
@@ -694,19 +694,8 @@ Install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jq&lt
 curl &lt;span class=&quot;nt&quot;&gt;-sL&lt;/span&gt; https://ctl.flyte.org/install | &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;bash &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; /usr/local/bin
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;4-configuring-flyte-sandbox&quot;&gt;4. Configuring Flyte Sandbox&lt;/h2&gt;
-&lt;p&gt;The Flyte Sandbox provides an easy way to run Flyte locally for development and testing.&lt;/p&gt;
-&lt;h3 id=&quot;create-flyte-configuration-file&quot;&gt;Create Flyte Configuration File&lt;/h3&gt;
-&lt;p&gt;Create the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.flyte/config-sandbox.yaml&lt;/code&gt; and add the following content:&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;flyte&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;endpoint&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;localhost:30080&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;authType&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pkce&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;insecure&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h3 id=&quot;start-flyte-sandbox&quot;&gt;Start Flyte Sandbox&lt;/h3&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FLYTECTL_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~/.flyte/config-sandbox.yaml
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;flytectl demo start
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;flytectl demo start
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;After running this command, you should see output indicating that Flyte is successfully running. The Flyte UI will be available at: http://localhost:30080/console
 Additional services like Minio (for storage) will also be available: http://localhost:30080/minio&lt;/p&gt;
@@ -747,7 +736,8 @@ Additional services like Minio (for storage) will also be available: http://loca
 &lt;p&gt;Ensure you have a project definition file (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;workflow_codes/project_definition.yaml&lt;/code&gt;) and populate it with necessary metadata.&lt;/p&gt;
 
 &lt;h3 id=&quot;create-project-in-flyte&quot;&gt;Create Project in Flyte&lt;/h3&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;flytectl create project &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; ./workflow_codes/project_definition.yaml
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;FLYTECTL_CONFIG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;~/.flyte/config-sandbox.yaml
+flytectl create project &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; ./workflow_codes/project_definition.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;project_definitionyaml-example&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;project_definition.yaml&lt;/code&gt; example&lt;/h3&gt;
@@ -1031,6 +1021,32 @@ Additional services like Minio (for storage) will also be available: http://loca
       </item>
     
       <item>
+        <title>Flyte Reference</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.flyte.org/en/latest/deployment/deployment/sandbox.html#configuration&quot;&gt;config-sandbox.yaml sample&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.flyte.org/en/latest/api/flytectl/gen/flytectl_update_project.html&quot;&gt;flytectl update project&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.flyte.org/en/latest/user_guide/customizing_dependencies/imagespec.html&quot;&gt;ImageSpec&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.flyte.org/en/latest/api/flytekit/generated/flytekit.types.file.FlyteFile.html&quot;&gt;flytekit.types.file.FlyteFile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.flyte.org/en/latest/api/flytekit/generated/flytekit.types.directory.FlyteDirectory.html&quot;&gt;flytekit.types.directory.FlyteDirectory&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.flyte.org/en/latest/user_guide/productionizing/customizing_task_resources.html&quot;&gt;Customizing task resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 10 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/flyte/workflow%20orchestration/2025/02/10/flyte-reference/</link>
+        <guid isPermaLink="true">http://localhost:4000/flyte/workflow%20orchestration/2025/02/10/flyte-reference/</guid>
+        
+        <category>Flyte</category>
+        
+        <category>Python</category>
+        
+        
+        <category>Flyte</category>
+        
+        <category>Workflow Orchestration</category>
+        
+      </item>
+    
+      <item>
         <title>Ensuring Correct Execution Context in Ray Tune’s Distributed Environment</title>
         <description>&lt;h1 id=&quot;how-raytunetuner-works&quot;&gt;How &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ray.tune.Tuner&lt;/code&gt; works?&lt;/h1&gt;
 &lt;p&gt;Let’s say we define a tuner and its trainable like this:&lt;/p&gt;
@@ -1134,54 +1150,6 @@ lsblk
         <category>Large Language Models (LLMs)</category>
         
         <category>AWS</category>
-        
-      </item>
-    
-      <item>
-        <title>macOS setting default python version</title>
-        <description>&lt;h2 id=&quot;1-python-installation-via-homebrew&quot;&gt;1. Python installation via Homebrew&lt;/h2&gt;
-&lt;p&gt;Homebrew maintains its python version schema as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python@X.Y&lt;/code&gt;.
-For example, to install python 3.11, it would be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brew install python@3.11&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2-update-macos-python-symbolic-link&quot;&gt;2. Update macOS python symbolic link&lt;/h2&gt;
-&lt;p&gt;After the installation, it will tell you the installed location.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Unversioned and major-versioned symlinks &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python-config&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3-config&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;pip&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;pip3&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, etc. pointing to
-&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3.11&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;python3.11-config&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;, &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;pip3.11&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; etc., respectively, are installed into
-/opt/homebrew/opt/python@3.11/libexec/bin &lt;span class=&quot;c&quot;&gt;# Here&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Unlink existing symbolic link.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;unlink&lt;/span&gt; /usr/local/bin/python
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Create symbolic link again with the desired python version.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /opt/homebrew/opt/python@3.11/libexec/bin/python3 /usr/local/bin/python
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Close and reopen the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminal&lt;/code&gt; app and check if it works.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-Python 3.11.11
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://devguide.python.org/versions/&quot;&gt;Status of Python versions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.brew.sh/Homebrew-and-Python#python-3&quot;&gt;Homebrew Python documentation&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/a/38806058&quot;&gt;Stack Overflow: How to set Python’s default version to 3.x on OS X?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sat, 25 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/python/macos/2025/01/25/macos-setting-default-python-version/</link>
-        <guid isPermaLink="true">http://localhost:4000/python/macos/2025/01/25/macos-setting-default-python-version/</guid>
-        
-        <category>Python</category>
-        
-        <category>Homebrew</category>
-        
-        
-        <category>Python</category>
-        
-        <category>macOS</category>
         
       </item>
     

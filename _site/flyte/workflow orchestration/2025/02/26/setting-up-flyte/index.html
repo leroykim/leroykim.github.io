@@ -138,19 +138,8 @@ Install <code class="language-plaintext highlighter-rouge">jq</code> and <code c
 curl <span class="nt">-sL</span> https://ctl.flyte.org/install | <span class="nb">sudo </span>bash <span class="nt">-s</span> <span class="nt">--</span> <span class="nt">-b</span> /usr/local/bin
 </code></pre></div></div>
 
-<h2 id="4-configuring-flyte-sandbox">4. Configuring Flyte Sandbox</h2>
-<p>The Flyte Sandbox provides an easy way to run Flyte locally for development and testing.</p>
-<h3 id="create-flyte-configuration-file">Create Flyte Configuration File</h3>
-<p>Create the file <code class="language-plaintext highlighter-rouge">~/.flyte/config-sandbox.yaml</code> and add the following content:</p>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">flyte</span><span class="pi">:</span>
-  <span class="na">admin</span><span class="pi">:</span>
-    <span class="na">endpoint</span><span class="pi">:</span> <span class="s">localhost:30080</span>
-    <span class="na">authType</span><span class="pi">:</span> <span class="s">Pkce</span>
-    <span class="na">insecure</span><span class="pi">:</span> <span class="kc">true</span>
-</code></pre></div></div>
 <h3 id="start-flyte-sandbox">Start Flyte Sandbox</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FLYTECTL_CONFIG</span><span class="o">=</span>~/.flyte/config-sandbox.yaml
-<span class="nb">sudo </span>flytectl demo start
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flytectl demo start
 </code></pre></div></div>
 <p>After running this command, you should see output indicating that Flyte is successfully running. The Flyte UI will be available at: http://localhost:30080/console
 Additional services like Minio (for storage) will also be available: http://localhost:30080/minio</p>
@@ -191,7 +180,8 @@ Additional services like Minio (for storage) will also be available: http://loca
 <p>Ensure you have a project definition file (e.g., <code class="language-plaintext highlighter-rouge">workflow_codes/project_definition.yaml</code>) and populate it with necessary metadata.</p>
 
 <h3 id="create-project-in-flyte">Create Project in Flyte</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flytectl create project <span class="nt">--file</span> ./workflow_codes/project_definition.yaml
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">FLYTECTL_CONFIG</span><span class="o">=</span>~/.flyte/config-sandbox.yaml
+flytectl create project <span class="nt">--file</span> ./workflow_codes/project_definition.yaml
 </code></pre></div></div>
 
 <h3 id="project_definitionyaml-example"><code class="language-plaintext highlighter-rouge">project_definition.yaml</code> example</h3>
