@@ -237,6 +237,128 @@
 
 <p><img src="/img/uniform_distribution.svg" alt="Uniform Distribution For Different Intervals" /></p>
 
+<p>For a continuous random variable \(X\) in the interval \([a,b]\), the probability density function (PDF) is:</p>
+
+\[f_{X}(x)=
+    \begin{cases}
+        \frac{1}{b-a}, &amp; \text{if} \; a \leq x \leq b \\
+        0, &amp; \text{otherwise}
+    \end{cases}\]
+
+<ul>
+  <li>\(a\) and \(b\) are the minimum and maximum values.</li>
+  <li>The probability is uniformly spread across \([a,b]\).</li>
+</ul>
+
+<p>The cumulative distribution function (CDF) is:</p>
+
+\[F_{X}(x)=
+    \begin{cases}
+        0, &amp; x &lt; a \\
+        \frac{x-a}{b-a}, &amp; \text{if} \; a \leq x \leq b \\
+        1, &amp; x &gt; b
+    \end{cases}\]
+
+<p>This shows the probability of \(X\) being less than or equal to \(x\).</p>
+
+<h5 id="mean-2">Mean</h5>
+<p>\(E[X]=\frac{a+b}{2}\)</p>
+
+<h5 id="variance-2">Variance</h5>
+<p>\(Var(X)=\frac{(b-a)^2}{12}\)</p>
+
+<h5 id="standard-deviation-2">Standard Deviation</h5>
+<p>\(\sigma_{X}=\sqrt{\frac{(b-a)^2}{12}}\)</p>
+
+<h5 id="entropy-measure-of-uncertainty">Entropy (Measure of Uncertainty)</h5>
+<p>\(H(X) = \ln(b-a)\)</p>
+
+<h5 id="insights-1">Insights</h5>
+<ul>
+  <li>If \(X \sim U(a,b)\), then any subinterval has an equal probability per unit length.</li>
+  <li>Usages
+    <ul>
+      <li>Sampling (e.g., random number generation)</li>
+      <li>Hypothesis testing</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h4 id="exponential-distribution">Exponential Distribution</h4>
+
+<p>The exponential distribution models the time between independent events that happen at a constant rate.</p>
+
+<p><img src="/img/exponential_distribution.svg" alt="Exponential Distribution For Different Lambda Values" /></p>
+
+<p>A random variable \(X\) follows an exponential distribution if the probability of waiting longer decreases exponentially as time passes:</p>
+
+\[X \sim \text{Exp}(\lambda)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>\(\lambda\) = rate parameter, representing the average number of events per unit time.</li>
+  <li>\(X\) represents the time between events.</li>
+</ul>
+
+<p>The probability density function (PDF) is:</p>
+
+\[f_X(x) =
+\begin{cases}
+\lambda e^{-\lambda x}, &amp; x \geq 0 \\
+0, &amp; x &lt; 0
+\end{cases}\]
+
+<p>The cumulative distribution function (CDF) is:</p>
+
+\[F_X(x) =
+\begin{cases}
+1 - e^{-\lambda x}, &amp; x \geq 0 \\
+0, &amp; x &lt; 0
+\end{cases}\]
+
+<p>This tells us that the probability of waiting at most \(x\) time units is \(1-e^{-\lambda x}\).</p>
+
+<h5 id="mean-3">Mean</h5>
+<p>\(E[X] = \frac{1}{\lambda}\)</p>
+
+<h5 id="variance-3">Variance</h5>
+<p>\(\text{Var}(X) = \frac{1}{\lambda^2}\)</p>
+
+<h5 id="standard-deviation-3">Standard Deviation</h5>
+<p>\(\sigma_{X}=\frac{1}{\lambda^2}\)</p>
+
+<h5 id="memorlyless-property">Memorlyless Property</h5>
+<p>The probability of waiting for an additional time \(t\), given that we have already waited \(s\), is the same as starting fresh:</p>
+
+\[P(X&gt;s+t \mid X&gt;s) = P(X&gt;t)\]
+
+<p>This makes the exponential distribution unique among continuous distributions.</p>
+
+<h5 id="graph-explanation">Graph Explanation</h5>
+
+<ul>
+  <li>Yellow (\(\lambda = 0.5\)): Events occur less frequently, so longer times between events are more likely.</li>
+  <li>Orange (\(\lambda=1\)): Moderate event frequency.</li>
+  <li>Red (\(\lambda=2\)): Events occur more frequently, meaning shorter waiting times are more probable.</li>
+</ul>
+
+<h5 id="insight">Insight</h5>
+<ul>
+  <li>As \(\lambda\) increases, the probability of short waiting times increases.</li>
+  <li>Usages: it is commonly used in waiting time problems,
+    <ul>
+      <li>Time between customer arrivals at a store.</li>
+      <li>Time until a machine breaks down.</li>
+      <li>Time between earthquakes.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="normal-distribution">Normal Distribution</h4>
+
     </div>
 
     <hr>

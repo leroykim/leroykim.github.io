@@ -5,8 +5,8 @@
     <description>AI Research Scientist | Expertise in LLMs &amp; Knowledge Graphs</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Mar 2025 21:11:52 -0400</pubDate>
-    <lastBuildDate>Tue, 11 Mar 2025 21:11:52 -0400</lastBuildDate>
+    <pubDate>Tue, 11 Mar 2025 22:07:33 -0400</pubDate>
+    <lastBuildDate>Tue, 11 Mar 2025 22:07:33 -0400</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       <item>
@@ -258,6 +258,128 @@
 &lt;p&gt;The uniform distribution is a probability distribution where all outcomes are equally likely within a given range.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/uniform_distribution.svg&quot; alt=&quot;Uniform Distribution For Different Intervals&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For a continuous random variable \(X\) in the interval \([a,b]\), the probability density function (PDF) is:&lt;/p&gt;
+
+\[f_{X}(x)=
+    \begin{cases}
+        \frac{1}{b-a}, &amp;amp; \text{if} \; a \leq x \leq b \\
+        0, &amp;amp; \text{otherwise}
+    \end{cases}\]
+
+&lt;ul&gt;
+  &lt;li&gt;\(a\) and \(b\) are the minimum and maximum values.&lt;/li&gt;
+  &lt;li&gt;The probability is uniformly spread across \([a,b]\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The cumulative distribution function (CDF) is:&lt;/p&gt;
+
+\[F_{X}(x)=
+    \begin{cases}
+        0, &amp;amp; x &amp;lt; a \\
+        \frac{x-a}{b-a}, &amp;amp; \text{if} \; a \leq x \leq b \\
+        1, &amp;amp; x &amp;gt; b
+    \end{cases}\]
+
+&lt;p&gt;This shows the probability of \(X\) being less than or equal to \(x\).&lt;/p&gt;
+
+&lt;h5 id=&quot;mean-2&quot;&gt;Mean&lt;/h5&gt;
+&lt;p&gt;\(E[X]=\frac{a+b}{2}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;variance-2&quot;&gt;Variance&lt;/h5&gt;
+&lt;p&gt;\(Var(X)=\frac{(b-a)^2}{12}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;standard-deviation-2&quot;&gt;Standard Deviation&lt;/h5&gt;
+&lt;p&gt;\(\sigma_{X}=\sqrt{\frac{(b-a)^2}{12}}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;entropy-measure-of-uncertainty&quot;&gt;Entropy (Measure of Uncertainty)&lt;/h5&gt;
+&lt;p&gt;\(H(X) = \ln(b-a)\)&lt;/p&gt;
+
+&lt;h5 id=&quot;insights-1&quot;&gt;Insights&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;If \(X \sim U(a,b)\), then any subinterval has an equal probability per unit length.&lt;/li&gt;
+  &lt;li&gt;Usages
+    &lt;ul&gt;
+      &lt;li&gt;Sampling (e.g., random number generation)&lt;/li&gt;
+      &lt;li&gt;Hypothesis testing&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;exponential-distribution&quot;&gt;Exponential Distribution&lt;/h4&gt;
+
+&lt;p&gt;The exponential distribution models the time between independent events that happen at a constant rate.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/exponential_distribution.svg&quot; alt=&quot;Exponential Distribution For Different Lambda Values&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A random variable \(X\) follows an exponential distribution if the probability of waiting longer decreases exponentially as time passes:&lt;/p&gt;
+
+\[X \sim \text{Exp}(\lambda)\]
+
+&lt;p&gt;Where:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;\(\lambda\) = rate parameter, representing the average number of events per unit time.&lt;/li&gt;
+  &lt;li&gt;\(X\) represents the time between events.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The probability density function (PDF) is:&lt;/p&gt;
+
+\[f_X(x) =
+\begin{cases}
+\lambda e^{-\lambda x}, &amp;amp; x \geq 0 \\
+0, &amp;amp; x &amp;lt; 0
+\end{cases}\]
+
+&lt;p&gt;The cumulative distribution function (CDF) is:&lt;/p&gt;
+
+\[F_X(x) =
+\begin{cases}
+1 - e^{-\lambda x}, &amp;amp; x \geq 0 \\
+0, &amp;amp; x &amp;lt; 0
+\end{cases}\]
+
+&lt;p&gt;This tells us that the probability of waiting at most \(x\) time units is \(1-e^{-\lambda x}\).&lt;/p&gt;
+
+&lt;h5 id=&quot;mean-3&quot;&gt;Mean&lt;/h5&gt;
+&lt;p&gt;\(E[X] = \frac{1}{\lambda}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;variance-3&quot;&gt;Variance&lt;/h5&gt;
+&lt;p&gt;\(\text{Var}(X) = \frac{1}{\lambda^2}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;standard-deviation-3&quot;&gt;Standard Deviation&lt;/h5&gt;
+&lt;p&gt;\(\sigma_{X}=\frac{1}{\lambda^2}\)&lt;/p&gt;
+
+&lt;h5 id=&quot;memorlyless-property&quot;&gt;Memorlyless Property&lt;/h5&gt;
+&lt;p&gt;The probability of waiting for an additional time \(t\), given that we have already waited \(s\), is the same as starting fresh:&lt;/p&gt;
+
+\[P(X&amp;gt;s+t \mid X&amp;gt;s) = P(X&amp;gt;t)\]
+
+&lt;p&gt;This makes the exponential distribution unique among continuous distributions.&lt;/p&gt;
+
+&lt;h5 id=&quot;graph-explanation&quot;&gt;Graph Explanation&lt;/h5&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Yellow (\(\lambda = 0.5\)): Events occur less frequently, so longer times between events are more likely.&lt;/li&gt;
+  &lt;li&gt;Orange (\(\lambda=1\)): Moderate event frequency.&lt;/li&gt;
+  &lt;li&gt;Red (\(\lambda=2\)): Events occur more frequently, meaning shorter waiting times are more probable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;insight&quot;&gt;Insight&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;As \(\lambda\) increases, the probability of short waiting times increases.&lt;/li&gt;
+  &lt;li&gt;Usages: it is commonly used in waiting time problems,
+    &lt;ul&gt;
+      &lt;li&gt;Time between customer arrivals at a store.&lt;/li&gt;
+      &lt;li&gt;Time until a machine breaks down.&lt;/li&gt;
+      &lt;li&gt;Time between earthquakes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;normal-distribution&quot;&gt;Normal Distribution&lt;/h4&gt;
 </description>
         <pubDate>Sun, 02 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/probability/statistics/2025/03/02/random-variables/</link>

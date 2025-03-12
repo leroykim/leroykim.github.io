@@ -165,3 +165,109 @@ $$\frac{1}{\sqrt{\lambda}}$$
 The uniform distribution is a probability distribution where all outcomes are equally likely within a given range.
 
 ![Uniform Distribution For Different Intervals](/img/uniform_distribution.svg)
+
+For a continuous random variable $$X$$ in the interval $$[a,b]$$, the probability density function (PDF) is:
+
+$$f_{X}(x)=
+    \begin{cases}
+        \frac{1}{b-a}, & \text{if} \; a \leq x \leq b \\
+        0, & \text{otherwise}
+    \end{cases}$$
+
+- $$a$$ and $$b$$ are the minimum and maximum values.
+- The probability is uniformly spread across $$[a,b]$$.
+
+The cumulative distribution function (CDF) is:
+
+$$F_{X}(x)=
+    \begin{cases}
+        0, & x < a \\
+        \frac{x-a}{b-a}, & \text{if} \; a \leq x \leq b \\
+        1, & x > b
+    \end{cases}$$
+
+This shows the probability of $$X$$ being less than or equal to $$x$$.
+
+##### Mean
+$$E[X]=\frac{a+b}{2}$$
+
+##### Variance
+$$Var(X)=\frac{(b-a)^2}{12}$$
+
+##### Standard Deviation
+$$\sigma_{X}=\sqrt{\frac{(b-a)^2}{12}}$$
+
+##### Entropy (Measure of Uncertainty)
+$$H(X) = \ln(b-a)$$
+
+##### Insights
+- If $$X \sim U(a,b)$$, then any subinterval has an equal probability per unit length.
+- Usages
+  - Sampling (e.g., random number generation)
+  - Hypothesis testing
+
+---
+
+#### Exponential Distribution
+
+The exponential distribution models the time between independent events that happen at a constant rate.
+
+![Exponential Distribution For Different Lambda Values](/img/exponential_distribution.svg)
+
+A random variable $$X$$ follows an exponential distribution if the probability of waiting longer decreases exponentially as time passes:
+
+$$X \sim \text{Exp}(\lambda)$$
+
+Where:
+
+- $$\lambda$$ = rate parameter, representing the average number of events per unit time.
+- $$X$$ represents the time between events.
+
+The probability density function (PDF) is:
+
+$$f_X(x) =
+\begin{cases}
+\lambda e^{-\lambda x}, & x \geq 0 \\
+0, & x < 0
+\end{cases}$$
+
+The cumulative distribution function (CDF) is:
+
+$$F_X(x) =
+\begin{cases}
+1 - e^{-\lambda x}, & x \geq 0 \\
+0, & x < 0
+\end{cases}$$
+
+This tells us that the probability of waiting at most $$x$$ time units is $$1-e^{-\lambda x}$$.
+
+##### Mean
+$$E[X] = \frac{1}{\lambda}$$
+
+##### Variance
+$$\text{Var}(X) = \frac{1}{\lambda^2}$$
+
+##### Standard Deviation
+$$\sigma_{X}=\frac{1}{\lambda^2}$$
+
+##### Memorlyless Property
+The probability of waiting for an additional time $$t$$, given that we have already waited $$s$$, is the same as starting fresh:
+
+$$P(X>s+t \mid X>s) = P(X>t)$$
+
+This makes the exponential distribution unique among continuous distributions.
+
+##### Graph Explanation
+
+- Yellow ($$\lambda = 0.5$$): Events occur less frequently, so longer times between events are more likely.
+- Orange ($$\lambda=1$$): Moderate event frequency.
+- Red ($$\lambda=2$$): Events occur more frequently, meaning shorter waiting times are more probable.
+
+##### Insight
+- As $$\lambda$$ increases, the probability of short waiting times increases.
+- Usages: it is commonly used in waiting time problems,
+  - Time between customer arrivals at a store.
+  - Time until a machine breaks down.
+  - Time between earthquakes.
+
+#### Normal Distribution
